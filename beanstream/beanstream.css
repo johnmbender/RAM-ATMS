@@ -1,0 +1,273 @@
+header {
+	background-color: rgb(67,73,121);
+	background-image: url(https://royalalbertamuseum.ca/themes/RAM/images/background-blue-red.svg);
+}
+
+main {
+	margin-top: 0 !important;
+}
+
+.btn-primary {
+	background-color: rgb(232,38,47) !important;
+	color: #fff !important;
+}
+
+.overlay {
+	background-color: rgb(232,38,47);
+	color: #fff;
+}
+
+.overlay-content a:hover {
+	color: black !important;
+}
+
+#plan-and-hours {
+	padding-left: 22px !important;
+}
+
+#ATMSContainer * {
+	font-family: 'Verlag A','Verlag B',Calibri,Candara,Segoe,'Segoe UI',Optima,Arial,sans-serif !important;
+	letter-spacing: 0.3px;
+}
+
+#LeftSide h1 {
+	margin: 14px 0 0!important;
+}
+
+#Cart,#Filters,#TicketsContainer,.EventInfo,.EventListing,.Message,.OtherOptionBox,.Tool {
+	border: 1px solid #ddd !important;
+	border-radius: 3px !important;
+}
+
+div.ItemDetails.Truncate p span {
+	font-size: 15px!important;
+}
+
+#ctl00_ctl00_MainContentPlaceHolder_MainContentPlaceHolder_SignInView_ReturningLabel,.OtherOptionBox h2 {
+	background-color: #8f91af!important
+}
+
+#Account a,.TicketsContainer .Right .Section h3,div.TicketsContainer h2,li.Odd.C0 a,li.Odd.C1 a,li.Odd.C2 a,li.Odd.C3 a {
+	background-color: #d0d1de!important;
+	color: #44477a!important
+}
+#BreadCrumbs ol {
+	padding-left: 0 !important;
+}
+
+#login-register {
+	text-align: left!important;
+	height: 31px!important;
+	line-height: 18px!important;
+	border: 0!important;
+	font-size: 14px!important;
+	border-radius: 3px !important;
+}
+
+#login-register * {
+	margin-left: 10px!important
+}
+
+.filter a {
+	color: #8f91af!important;
+	font-weight: 700;
+	font-size: 12px!important;
+	margin-bottom: 0!important;
+	line-height: 20px!important
+}
+
+.filter .selected a,.filter a:hover {
+	background-color: #8f91af!important;
+	color: #fff!important
+}
+.filter a {
+	font-weight: normal !important;
+}
+
+#Cart h2 {
+	background-color: #d0d1de !important;
+	font-size: 15px !important;
+}
+
+#DateSelect input {
+	background-color: #ddd!important
+}
+
+#Cart h2 {
+	padding-left: 15px!important;
+	color: #44477a!important
+}
+
+#Cart p.Amount {
+	font-size: 20px !important;
+	font-weight: 700!important;
+	color: #44477a!important
+}
+
+h1 {
+	text-transform: uppercase!important
+}
+
+.EventInfo,.EventListing {
+	padding: 14px!important;
+	color: #000!important;
+	background-color: #fff!important
+}
+
+.EventListing {
+	padding-top: 30px;
+	/*height: 120px;*/
+}
+
+.EventInfo .Image,.EventListing .Image {
+	margin-right: 14px!important
+}
+
+.EventListing h2 {
+	font-size: 18px!important
+}
+
+#Cart h2,.ItemDetails {
+	font-size: 14px!important;
+	line-height: 20px;
+}
+
+.ButtonArea a.PrimaryAction {
+	background-color: rgb(232,38,47) !important;
+	color: #fff !important;
+	text-transform: uppercase!important;
+	margin: 0 8px 14px 14px!important;
+	height: 26px!important;
+	line-height: 12px!important;
+	font-size: 12px!important;
+	padding-left: 24px;
+	padding-right: 24px;
+	letter-spacing: 1.3px;
+	height: 42px;
+	padding-top: 10px;
+}
+
+#login-register img,#vantixFooter {
+	display: none!important
+}
+
+div.filter h3 {
+	border-style: none!important
+}
+
+#Filters h3 {
+	margin-left: 4px!important
+}
+
+#BreadCrumbs {
+	padding: 0px !important;
+	border-color: #ddd!important;
+	color: #44477a!important;
+	font-size: 14px;
+}
+
+#AccountMenu div,#AddressCity,#AddressCountry,#AddressLine1,#AddressLine2,#AddressPostalCode,#AddressProvinceSelect,#CardExpiryMonth,#CardExpiryYear,#CardHolder,#CardSecurityCode,#CardType,#ConfirmEmailAddress,#ConfirmPassword,#EmailAddress,#FirstName,#LastName,#OldPassword,#Password,#PhoneNumberExt,#Username,.ErrorInput,.FillerValue,select.navigation-dropdown {
+	border-color: #ddd !important
+}
+
+#AccountMenu div a {
+	color: #44477a
+}
+
+#RightSearchBar {
+	border: 1px solid #ddd !important;
+	border-radius: 3px !important;
+	background-color: #ddd!important
+}
+
+
+.hasDatepicker {
+	border: 0px !important;
+}
+
+#Go {
+	color: #44477a!important;
+	text-transform: uppercase!important;
+	background-color: transparent!important;
+	font-weight: 800 !important;
+}
+
+div.filter {
+	border-color: #ddd!important
+}
+div.filter a {
+	font-size: 13px !important;
+}
+
+#q {
+	background-color: #ddd!important;
+	height: 31px!important;
+	font-size: 15px!important;
+	line-height: 18px!important;
+}
+
+#CalendarContainer .EventListing .PrimaryAction {
+	margin-bottom: 5px!important
+}
+
+.Tool h3,.input-large,a.js-select-date {
+	background-color: #d0d1de!important
+}
+
+h2.beanstream {
+	margin: 40px 0 0 0;
+	font-weight: bold;
+}
+#frmPayment {
+	margin-top: -10px;
+	letter-spacing: 0px;
+	font-size: 15px;
+}
+#frmPayment tr {
+	vertical-align: top;
+}
+#frmPayment tr td:first {
+	white-space: nowrap;
+}
+#frmPayment tr td input {
+	width: 100%;
+}
+select {
+	height: 27px;
+}
+select[name="trnExpMonth"], select[name="trnExpYear"] {
+	width: 48%
+}
+select[name="trnExpMonth"] {
+	margin-right: 1px;
+}
+select[name="trnExpYear"] {
+	float: right;
+}
+.btn-secondary {
+	padding-left: 24px;
+	padding-right: 24px;
+	background-color: rgb(255,0,0);
+	letter-spacing: 1.3px;
+	height: 42px;
+	padding-top: 10px;
+}
+.btn-secondary:hover {
+	background-color: #000;
+}
+b {
+	font-size: 16px;
+	letter-spacing: 1px;
+	font-weight: 700;
+}
+input[name="ordEmailAddress"] {
+	margin-bottom: 12px;
+}
+p.terms-conditions {
+	margin-top: 10px;
+}
+
+/* Thanks, COVID */
+#plan-and-hours {
+	display: none !important;
+}
