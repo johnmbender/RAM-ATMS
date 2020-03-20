@@ -2,7 +2,7 @@ html, body {
 	overflow-x: hidden;
 	font-size: 16px;
 }
-main, footer {
+main, footer * {
 	font-family: "Verlag A", "Verlag B", Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif !important;
 	font-weight: 300 !important;
 	letter-spacing: 0.3px;
