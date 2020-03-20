@@ -360,6 +360,10 @@ main {
 	margin-top: 11em;
 }
 
+#beanstream-container {
+	margin: auto;
+}
+
 .btn-primary {
 	background-color: rgb(232,38,47) !important;
 	color: #fff !important;
