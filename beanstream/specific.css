@@ -640,3 +640,15 @@ p.terms-conditions {
 #plan-and-hours {
 	display: none !important;
 }
+
+
+
+/* DEFINITELY SPECIFIC */
+#beanstream-container {
+	width: 500px;
+	padding: 0px;
+	margin: 10px auto;
+}
+table {
+	width: 500px;
+}
