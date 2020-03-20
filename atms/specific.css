@@ -7,13 +7,14 @@
 	}
 */
 
-
 #atms-container {
 	padding-top: 10px;
 }
+
 .table-no-top-border tr:first-of-type td {
 	border-top: 0 !important;
 }
+
 .table-no-top-border {
 	margin-bottom: 30px;
 }
@@ -35,10 +36,11 @@ div.ItemDetails.Truncate p span {
 	background-color: #8f91af!important
 }
 
-#Account a,.TicketsContainer .Right .Section h3,div.TicketsContainer h2,li.Odd.C0 a,li.Odd.C1 a,li.Odd.C2 a,li.Odd.C3 a {
+#Account a, .TicketsContainer .Right .Section h3, div.TicketsContainer h2, li.Odd.C0 a, li.Odd.C1 a, li.Odd.C2 a, li.Odd.C3 a {
 	background-color: #d0d1de!important;
 	color: #44477a!important
 }
+
 #BreadCrumbs ol {
 	padding-left: 0 !important;
 }
@@ -64,10 +66,11 @@ div.ItemDetails.Truncate p span {
 	line-height: 20px!important
 }
 
-.filter .selected a,.filter a:hover {
+.filter .selected a, .filter a:hover {
 	background-color: #8f91af!important;
 	color: #fff!important
 }
+
 .filter a {
 	font-weight: normal !important;
 }
@@ -96,7 +99,7 @@ h1 {
 	text-transform: uppercase!important
 }
 
-.EventInfo,.EventListing {
+.EventInfo, .EventListing {
 	padding: 14px!important;
 	color: #000!important;
 	background-color: #fff!important
@@ -106,7 +109,7 @@ h1 {
 	padding-top: 30px;
 }
 
-.EventInfo .Image,.EventListing .Image {
+.EventInfo .Image, .EventListing .Image {
 	margin-right: 14px!important
 }
 
@@ -114,13 +117,15 @@ h1 {
 	font-size: 18px!important
 }
 
-#Cart h2,.ItemDetails {
+#Cart h2, .ItemDetails {
 	font-size: 14px!important;
 	line-height: 20px;
 }
+
 .ButtonArea {
 	min-width: 180px;
 }
+
 .ButtonArea a.PrimaryAction {
 	background-color: rgb(232,38,47) !important;
 	color: #fff !important;
@@ -134,9 +139,10 @@ h1 {
 	letter-spacing: 1.3px;
 	height: 42px;
 	padding-top: 10px;
+	font-weight: bold;
 }
 
-#login-register img,#vantixFooter {
+#login-register img, #vantixFooter {
 	display: none!important
 }
 
@@ -155,7 +161,7 @@ div.filter h3 {
 	font-size: 14px;
 }
 
-#AccountMenu div,#AddressCity,#AddressCountry,#AddressLine1,#AddressLine2,#AddressPostalCode,#AddressProvinceSelect,#CardExpiryMonth,#CardExpiryYear,#CardHolder,#CardSecurityCode,#CardType,#ConfirmEmailAddress,#ConfirmPassword,#EmailAddress,#FirstName,#LastName,#OldPassword,#Password,#PhoneNumberExt,#Username,.ErrorInput,.FillerValue,select.navigation-dropdown {
+#AccountMenu div, #AddressCity, #AddressCountry, #AddressLine1, #AddressLine2, #AddressPostalCode, #AddressProvinceSelect, #CardExpiryMonth, #CardExpiryYear, #CardHolder, #CardSecurityCode,#CardType, #ConfirmEmailAddress, #ConfirmPassword, #EmailAddress, #FirstName, #LastName, #OldPassword, #Password, #PhoneNumberExt, #Username, .ErrorInput, .FillerValue, select.navigation-dropdown {
 	border-color: #ddd !important
 }
 
@@ -168,7 +174,6 @@ div.filter h3 {
 	border-radius: 3px !important;
 	background-color: #ddd!important
 }
-
 
 .hasDatepicker {
 	border: 0px !important;
@@ -199,35 +204,44 @@ div.filter a {
 	margin-bottom: 5px!important
 }
 
-.Tool h3,.input-large,a.js-select-date {
+.Tool h3, .input-large, a.js-select-date {
 	background-color: #d0d1de!important
 }
+
 #frmPayment {
 	margin-top: -10px;
 	letter-spacing: 0px;
 	font-size: 15px;
 }
+
 #frmPayment tr {
 	vertical-align: top;
 }
+
 #frmPayment tr td:first {
 	white-space: nowrap;
 }
+
 #frmPayment tr td input {
 	width: 100%;
 }
+
 select {
 	height: 27px;
 }
+
 select[name="trnExpMonth"], select[name="trnExpYear"] {
 	width: 48%
 }
+
 select[name="trnExpMonth"] {
 	margin-right: 1px;
 }
+
 select[name="trnExpYear"] {
 	float: right;
 }
+
 .btn-secondary {
 	padding-left: 24px;
 	padding-right: 24px;
@@ -236,14 +250,17 @@ select[name="trnExpYear"] {
 	height: 42px;
 	padding-top: 10px;
 }
+
 .btn-secondary:hover {
 	background-color: #000;
 }
+
 b {
 	font-size: 16px;
 	letter-spacing: 1px;
 	font-weight: 700;
 }
+
 input[name="ordEmailAddress"] {
 	margin-bottom: 12px;
 }
