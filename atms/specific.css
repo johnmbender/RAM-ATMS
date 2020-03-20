@@ -110,20 +110,16 @@ h1 {
 }
 
 .EventInfo .Image, .EventListing .Image {
-	margin-right: 14px!important
+	margin-right: 14px !important
 }
 
 .EventListing h2 {
-	font-size: 18px!important
+	font-size: 18px !important;
 }
 
 #Cart h2, .ItemDetails {
-	font-size: 14px!important;
+	font-size: 14px !important;
 	line-height: 20px;
-}
-
-.ButtonArea {
-	min-width: 180px;
 }
 
 .ButtonArea a.PrimaryAction {
