@@ -5,14 +5,6 @@ html, body {
 	overflow-x: hidden;
 	font-size: 16px;
 }
-body * {
-	font-family: "Verlag A", "Verlag B", Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif !important;
-	font-weight: 300;
-	letter-spacing: 0.3px;
-}
-#atms-container {
-	padding-top: 10px;
-}
 #atms-link {
 	/* hiding this Overly Menu item because we're closed */
 	display: none;
@@ -51,14 +43,11 @@ header {
 #too-small img {
 	width: 90%;
 }
-.uppercase, .card-body {
-	text-transform: uppercase;
-}
 .btn {
 	border-radius: 0.1875em;
 	border: 0;
 	font-weight: bold;
-	text-transform: uppercase
+	text-transform: uppercase;
 }
 .btn:focus,.btn:active:focus,.btn.active:focus,
 .btn.focus,.btn:active.focus,.btn.active.focus {
@@ -71,15 +60,6 @@ header {
 	letter-spacing: 1.3px;
 	height: 42px;
 	padding-top: 8px;
-}
-.content-container .btn-primary {
-	margin-right: 5px;
-}
-.fineprint small {
-	font-size: 13px;
-}
-main .btn-primary {
-	margin-top: 10px;
 }
 .table-no-top-border tr:first-of-type td {
 	border-top: 0 !important;
@@ -95,11 +75,6 @@ main .btn-primary {
 	font-size: 30px;
 	margin: 3px 0 8px 0;
 	cursor: pointer;
-}
-.fa-search {
-	display: none !important;
-	font-size: 26px;
-	font-weight: 600;
 }
 .nav-and-search a:hover {
 	text-decoration: none;
@@ -120,11 +95,6 @@ h3 {
 iframe {
 	margin-bottom: 14px;
 	border: 0;
-}
-header {
-	height: 11em;
-	min-height: 54px;
-	display: block;
 }
 header a:hover {
 	text-decoration: none;
@@ -637,3 +607,15 @@ p.terms-conditions {
 #plan-and-hours {
 	display: none !important;
 }
+
+/*  REMOVED ITEMS; SAVED FOR TESTING
+    ********************************
+    
+    header {
+        height: 11em;
+        min-height: 54px;
+        display: block;
+    }
+
+    ********************
+    END REMOVED ITEMS */
