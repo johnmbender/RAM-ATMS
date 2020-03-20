@@ -63,6 +63,7 @@ header {
 	font-size: 30px;
 	margin: 3px 0 8px 0;
 	cursor: pointer;
+	font-family: sans-serif !important;
 }
 .nav-and-search a:hover {
 	text-decoration: none;
