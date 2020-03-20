@@ -7,7 +7,11 @@ html, body {
 }
 
 #atms-container {
-	padding-top: 20px;
+	padding-top: 10px;
+}
+
+#atms-link {
+	display: none;
 }
 
 header {
