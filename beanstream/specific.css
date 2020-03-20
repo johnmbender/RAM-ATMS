@@ -26,7 +26,6 @@ header {
 	background-position: center top;
 	background-size: cover;
 	background-attachment: contain;
-	background-color: rgb(23,169,120);
 	z-index: 50 !important;
 }
 @media (min-width: 1200px) {
@@ -584,7 +583,7 @@ div.filter a {
 }
 
 h2.beanstream {
-	margin: 80px 0 0 0;
+	padding-top: 20px;
 	font-weight: bold;
 }
 #frmPayment {
