@@ -1,3 +1,11 @@
+html, body {
+	font-family: "Verlag A", "Verlag B", Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif !important;
+	font-weight: 300;
+	letter-spacing: 1px;
+	overflow-x: hidden;
+	font-size: 16px;
+}
+
 header {
 	background-color: rgb(67,73,121);
     background-image: url(https://royalalbertamuseum.ca/themes/RAM/images/background-blue-red.svg);
