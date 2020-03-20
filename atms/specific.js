@@ -2,11 +2,8 @@
  * 
  # @atms/specific.js
  */
-
-function ATMS() {
+function ATMS(params) {
     // we can only get intent here; no hard data
-    var params = retrieveURLparams();
-
     switch (window.location.pathname) {
         case '/ram/Default.aspx':
             // viewing all of our offerings
