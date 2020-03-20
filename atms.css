@@ -1,6 +1,21 @@
 header {
 	background-color: rgb(67,73,121);
-	background-image: url(https://royalalbertamuseum.ca/themes/RAM/images/background-blue-red.svg);
+    background-image: url(https://royalalbertamuseum.ca/themes/RAM/images/background-blue-red.svg);
+    -webkit-touch-callout: none;
+	-moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    top: 0;
+	color: #fff;
+	margin: 0 !important;
+    background-repeat: no-repeat;
+	background-position: center top;
+	background-size: cover;
+	background-attachment: contain;
+	background-color: rgb(23,169,120);
+	z-index: 50 !important;
 }
 
 main {
