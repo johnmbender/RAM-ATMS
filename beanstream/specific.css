@@ -5,6 +5,10 @@ html, body {
 	overflow-x: hidden;
 	font-size: 16px;
 }
+body * {
+	font-family: "Verlag A", "Verlag B", Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif !important;
+	font-weight: 300 !important;
+}
 
 header {
 	background-color: rgb(67,73,121);
