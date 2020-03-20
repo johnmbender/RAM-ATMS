@@ -63,7 +63,6 @@ header {
 	font-size: 30px;
 	margin: 3px 0 8px 0;
 	cursor: pointer;
-	font-family: Arial, Helvetica, sans-serif !important;
 }
 .nav-and-search a:hover {
 	text-decoration: none;
@@ -192,9 +191,6 @@ button#plan-your-visit:hover {
 }
 .col-lg-4 {
 	margin-top: 30px;
-}
-.col-lg-4 .card-body {
-	height: 140px !important;
 }
 footer {
 	background-image: url(https://royalalbertamuseum.ca/themes/RAM/images/background-grey.svg);
