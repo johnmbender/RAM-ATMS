@@ -7,6 +7,9 @@ main *, footer * {
 	font-weight: 300 !important;
 	letter-spacing: 0.3px;
 }
+main {
+	margin-top: 160px;
+}
 #atms-link {
 	/* hiding this Overly Menu item because we're closed */
 	display: none;
