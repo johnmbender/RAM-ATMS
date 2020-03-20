@@ -4,8 +4,8 @@ Javascript/CSS file hosting because Drupal is terrible.
 This allows ATMS and Beanstream to use separate CSS and JS files not hosted on the ever-caching Drupal site.
 
 TO-DO:
-- create one main CSS file and one main JavaScript file for both ATMS and Beanstream in root
-- split the specific CSS and JavaScript for ATMS and Beanstream into their respective folders
+- clean up the CSS through base and specific CSS files
+- work on the JS files to get good tag tracking
 
 ATMS folder contains:
 - atms.js: handles basic site functions, but needs to handle more accurate google tag manager tracking for eCommerce tracking
