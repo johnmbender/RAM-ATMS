@@ -148,8 +148,16 @@ function ATMS(params) {
             break;
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
-            console.log(params);
-            switch (params.item) {
+            if (params.length == 0) {
+                console.log("ERROR: No parameters provided.");
+                return;
+            } else if (params.item == null) {
+                console.log("ERROR: No ITEM provided.");
+                return;
+            }
+            var item = parseInt(params.item);
+            
+            switch (item) {
                 case 16:
                     gtag('event', 'view_item', {
                         'items' : [
@@ -163,6 +171,10 @@ function ATMS(params) {
                             }
                         ]
                     });
+                    break;
+                default:
+                    console.log('No item value?');
+                    console.log(params);
             }
 
             break;
