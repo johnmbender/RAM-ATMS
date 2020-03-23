@@ -146,12 +146,9 @@ function ATMS(params) {
             break;
         case '/ram/DateSelection.aspx':
             // user is checking calendar for dates for general admission
-            ga('ec:addImpression', {
-                'id': '12',
-                'name': 'General Admission Calendar',
-                'category': 'admission'
+            gtag('event', 'page_view', {
+                'name' : 'Admission date selection'
             });
-            ga('send', 'pageview');
             break;
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
