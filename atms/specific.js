@@ -141,24 +141,14 @@ function ATMS(params) {
         case '/ram/Default.aspx':
             // viewing all of our offerings
             console.log('viewing Sales Homepage');
-            gtag('event', 'page_view', {
-                'name' : 'Sales Homepage'
-            });
             break;
         case '/ram/DateSelection.aspx':
             // user is checking calendar for dates for general admission
             console.log('viewing Admission date selection');
-            gtag('event', 'page_view', {
-                'name' : 'Admission date selection'
-            });
             break;
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
-            if (params.sch) {
-                
-            } else {
-
-            }
+            console.log(params);
 
             break;
         case '/ram/OrderSummary.aspx':
