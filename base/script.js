@@ -3,6 +3,11 @@
  # @base/script.js
  */
 (() => {
+	// set GTag settings
+	gtag('set', {
+		'currency': 'CAD',
+	});
+
     $('.fa-bars').click(function() {
         $('.fa-bars').prop('aria-expanded', 'true');
         $('#nav-overlay').css('height', '100%');
