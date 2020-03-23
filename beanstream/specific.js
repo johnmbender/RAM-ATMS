@@ -4,11 +4,25 @@
 */
 (() => {
     // event-catching
-    /*
     $('select[name="trnCardType"]').on('change', function() {
-        console.log('changed card type to ' + $(this).val());
+        console.log('triggered!');
+        var totalValue = 42.00;
+        var quantity = 2;
+        var price = 21.00;
+        gtag('event', 'add_to_cart', {
+            'value' : totalValue,
+            'currency' : 'CAD',
+            'items' : [
+                {
+                    'id' : '16',
+                    'name' : 'Adult Mammoth Pass',
+                    'category' : 'Annual Pass',
+                    'quantity' : quantity,
+                    'price' : price
+                }
+            ]
+        });
     });
-    */
 })();
 
 function BeanStream() {

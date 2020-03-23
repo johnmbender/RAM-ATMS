@@ -258,12 +258,12 @@ function ATMS(params) {
             break;
         case '/ram/OrderResponse.aspx':
             // user has successfully purchased; GET variable "order" links to beanstream's "ref1" variable
-            var orderNumber = params.trnOrderNumber;
-            ga('ec:setAction', 'purchase', {
-            'id': orderNumber,
-            'revenue': params.trnAmount
-            });
-            ga('send', 'pageview');
+            // var orderNumber = params.trnOrderNumber;
+            // ga('ec:setAction', 'purchase', {
+            // 'id': orderNumber,
+            // 'revenue': params.trnAmount
+            // });
+            // ga('send', 'pageview');
             break;
     }
 }
