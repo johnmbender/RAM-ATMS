@@ -149,6 +149,21 @@ function ATMS(params) {
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
             console.log(params);
+            switch (params.item) {
+                case 16:
+                    gtag('event', 'view_item', {
+                        'items' : [
+                            {
+                                'id' : 16,
+                                'name' : 'Adult Mammoth Pass',
+                                'category' : 'Memberships',
+                                'variant' : 'Adult',
+                                'quantity' : 1,
+                                'price' : 35.00
+                            }
+                        ]
+                    });
+            }
 
             break;
         case '/ram/OrderSummary.aspx':
