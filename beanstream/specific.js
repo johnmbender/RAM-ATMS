@@ -5,7 +5,7 @@
 function BeanStream() {
     // event registrations
     $('select[name="trnExpMonth"]').on('change', function() {
-        console.log('changed card to ' + this.val());
+        console.log('changed card to ' + $(this).val());
     });
 
     // hard data lives here
