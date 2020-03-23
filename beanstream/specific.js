@@ -4,7 +4,7 @@
 */
 function BeanStream() {
     // event registrations
-    $('input[name="trnCardType"]').on('change', function() {
+    $('select[name="trnCardType"]').on('change', function() {
         console.log('changed card to ' + this.val());
     });
 
