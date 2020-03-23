@@ -110,6 +110,31 @@ OrderCheckout.aspx
     ]
     });
 */
+
+(() => {
+    // event-catching
+    $('#pricing_116:16:_').on('change', function() {
+        // changing number of adult Mammoth passes
+        var quantity = parseInt($(this).val());
+        var price = 35.00;
+        var totalValue = quantity * price;
+
+        gtag('event', 'add_to_cart', {
+            'value' : totalValue,
+            'currency' : 'CAD',
+            'items' : [
+                {
+                    'id' : '16',
+                    'name' : 'Adult Mammoth Pass',
+                    'category' : 'Annual Pass',
+                    'quantity' : quantity,
+                    'price' : price
+                }
+            ]
+        });
+    });
+})();
+
 function ATMS(params) {
     // we can only get intent here; no hard data
     switch (window.location.pathname) {

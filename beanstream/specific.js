@@ -4,9 +4,11 @@
 */
 (() => {
     // event-catching
-    $('select[name="trnExpMonth"]').on('change', function() {
-        console.log('card month changed to ' + $(this).val());
+    /*
+    $('select[name="trnCardType"]').on('change', function() {
+        console.log('changed card type to ' + $(this).val());
     });
+    */
 })();
 
 function BeanStream() {
