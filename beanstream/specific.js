@@ -2,12 +2,14 @@
  * 
  # @beanstream/specific.js
 */
-function BeanStream() {
-    // event registrations
+(() => {
+    // event-catching
     $('select[name="trnExpMonth"]').on('change', function() {
-        console.log('changed card to ' + $(this).val());
+        console.log('card month changed to ' + $(this).val());
     });
+})();
 
+function BeanStream() {
     // hard data lives here
     switch (window.location.pathname) {
         case '/scripts/payment/payment.asp':
