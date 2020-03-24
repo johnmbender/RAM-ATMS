@@ -192,7 +192,7 @@ admission.youth = admission_youth;
 admission.child = admission_child;
 
 (() => {
-    // event-catching
+    // EVENT CATCHERS
     $('input#AddToOrder.PrimaryAction').on('click', function() {
         // check what's going into the cart
         if (params == null) {
@@ -240,6 +240,39 @@ admission.child = admission_child;
             // viewing a mammoth pass
         }
         return false;
+    });
+
+    $('input[title="Remove"]').on('click', function() {
+        var parent = $(this).closest('tr');
+        var item_name = $(parent).find('.CartType').text();
+        var item_quantity = parseInt($(parent).find('.CartQuantity').text());
+        var item_price = parseInt($(parent).find('.CartPrice').text());
+        var item_id = null;
+
+        if (item_name == admission.adult.name) {
+            item_id = admission.adult.id;
+        } else if (item_name == admission.youth.name) {
+            item_id = admission.youth.id;
+        } else if (item_name == admission.senior.name) {
+            item_id = admission.senior.id;
+        } else if (item_name == admission.child.name) {
+            item_id = admission.child.id;
+        } else {
+            // no match, but don't stop processing
+            return true;
+        }
+
+        gtag('event', 'remove_from_cart', {
+            'items' : [{
+              'id' : item_id,
+              'name' : item_name ,
+              'category' : 'Admissions',
+              'price' : item_price,
+              'quantity' : item_quantity
+            }]
+        });
+
+        return true;
     });
     // $('#pricing_116:16:_').on('change', function() {
     //     // changing number of adult Mammoth passes
