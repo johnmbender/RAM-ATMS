@@ -136,11 +136,12 @@ admission.child = admission_child;
     $('input[title="Remove"]').on('click', function(event) {
         // remove item from cart
         event.preventDefault();
-
+        console.log($(this));
         var parent = $(this).parent('tr');
+        console.log(parent);
         var item_name = $(parent).find('td.CartType').text();
-        var item_quantity = parseInt($(parent).find('td.CartQuantity').text());
-        var item_price = parseInt($(parent).find('td.CartPrice').text());
+        var item_quantity = parseInt($(parent).find('td.CartQuantity').text().replace('$',''));
+        var item_price = parseInt($(parent).find('td.CartPrice').text().replace('$',''));
         var item_id = null;
 
         if (item_name == admission.adult.name) {
@@ -379,9 +380,9 @@ function ATMS(parameters) {
                     return true;
                 }
 
-                var item_quantity = parseInt($(item).first('.CartQuantity').text());
-                var item_price = parseInt($(item).first('.CartPrice').text());
-                var item_total = parseInt($(item).first('.CartTotal').text());
+                var item_quantity = parseInt($(item).first('.CartQuantity').text().replace('$',''));
+                var item_price = parseInt($(item).first('.CartPrice').text().replace('$',''));
+                var item_total = parseInt($(item).first('.CartTotal').text().replace('$',''));
                 
                 items.push({
                     'id' : item_id,
