@@ -58,7 +58,7 @@ OrderCheckout.aspx
         - td.CartQuantity
         - td.CartPrice (includes "$")
         - td.CartTotal (includes "$")
-        - td.CartFinalTotal strong (includes "$" and "CDN")
+        - td.CartFinalTotal strong (includes "$" and "CDN")e
         - p.Amount (includes "$")
     
     IMPORTANT:
@@ -193,9 +193,11 @@ admission.child = admission_child;
 
 (() => {
     // EVENT CATCHERS
-    $('input#AddToOrder.PrimaryAction').on('click', function() {
+    $('input#AddToOrder.PrimaryAction').on('click', function(event) {
         // check what's going into the cart
-        if (params == null) {
+        event.preventDefault();
+
+        if (params == null || params.length == 0) {
             return true;
         } else if (params.sch.length > 0) {
             // viewing the admissions calendar
@@ -234,15 +236,15 @@ admission.child = admission_child;
             gtag('event', 'add_to_cart', {
                 'items' : items
             });
-
-            return true;
         } else if (params.item.length > 0) {
             // viewing a mammoth pass
         }
-        return false;
+        return true;
     });
 
-    $('input[title="Remove"]').on('click', function() {
+    $('input[title="Remove"]').on('click', function(event) {
+        event.preventDefault();
+
         var parent = $(this).closest('tr');
         var item_name = $(parent).find('.CartType').text();
         var item_quantity = parseInt($(parent).find('.CartQuantity').text());
@@ -303,6 +305,10 @@ function ATMS(parameters) {
     // we can only get intent here; no hard data
     switch (window.location.pathname) {
         case '/ram/Default.aspx':
+            if (params == null) {
+                return;
+            }
+
             if (params.tagId.length > 0) {
                 // viewing a specific category of items
                 var tagId = parseInt(params.tagId);
@@ -448,21 +454,80 @@ function ATMS(parameters) {
             break;
         case '/ram/OrderSummary.aspx':
             // user is viewing cart
+            // nothing to be tracked here (so delete case?)
+            break;
+        case '/ram/Login.aspx':
+            // user needs to Login or continue as Guest
+            
+            break;
+        case '/ram/OrderContact.aspx':
+            // user is using the Guest checkout option
+            // ...?
             break;
         case '/ram/OrderRegistrants.aspx':
             // user is entering names on tickets (not using for now)
             break;
         case '/ram/OrderCheckout.aspx':
             // reviewing cart after logging in; last stop before beanstream
+            // gather cart info
+            var items = [];
+            var totalCartValue = 0;
+
+            $.each($('#ShoppingCart tbody tr'), function(i, item) {
+                var item_category = $(item).first('.CartItem strong').text();
+                var item_name = $(item).first('.CartType span em').text();
+                var item_id = null;
+
+                if (item_category == 'Admission') {
+                    item_category = 'Admissions'; // odd inconsistency on ATMS
+                    if (item_name == admission.adult.name) {
+                        item_id = admission.adult.id;
+                    } else if (item_name == admission.senior) {
+                        item_id = admission.senior.id;
+                    } else if (item_name == admiission.youth) {
+                        item_id = admission.youth.id;
+                    } else if (item_name == admission.child) {
+                        item_id = admission.child.id;
+                    }
+                } else if (item_category == 'MAMMOTH PASS?') {
+                    // NEED TO COMPLETE
+                } else if (item_category == 'SOME OTHER?') {
+                    // NEED TO COMPLETE?
+                } else {
+                    // unknown category, or category couldn't be retrieved
+                    return true;
+                }
+
+                if (item_id == null) {
+                    return true;
+                }
+
+                var item_quantity = parseInt($(item).first('.CartQuantity').text());
+                var item_price = parseInt($(item).first('.CartPrice').text());
+                var item_total = parseInt($(item).first('.CartTotal').text());
+                
+                items.push({
+                    'id' : item_id,
+                    'category' : item_category,
+                    'name' : item_name,
+                    'price' : item_price,
+                    'quantity' : item_quantity
+                });
+                totalCartValue += item_price * item_quantity;
+            });
+
+            if (items.length == 0) {
+                return true;
+            }
+
+            gtag('event', 'begin_checkout', {
+                'items' : items,
+                'value' : totalCartValue
+            });
             break;
         case '/ram/OrderResponse.aspx':
-            // user has successfully purchased; GET variable "order" links to beanstream's "ref1" variable
-            // var orderNumber = params.trnOrderNumber;
-            // ga('ec:setAction', 'purchase', {
-            // 'id': orderNumber,
-            // 'revenue': params.trnAmount
-            // });
-            // ga('send', 'pageview');
+            // I dunno, man... need to do a real sale
+
             break;
     }
 }
