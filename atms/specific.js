@@ -142,10 +142,64 @@ function ATMS(params) {
         case '/ram/Default.aspx':
             // viewing all of our offerings
             console.log('viewing Sales Homepage');
+            gtag('event', 'view_item_list', {
+                'items' : [
+                    {
+                        'id' : 12,
+                        'name' : 'Admission',
+                        'category' : 'Admission',
+                        'price' : 'variable',
+                        'position' : 1
+                    },
+                    {
+                        'id' : 16,
+                        'name' : 'Adult Mammoth Pass',
+                        'category' : 'Memberships',
+                        'price' : 35.00,
+                        'position' : 2
+                    },
+                    {
+                        'id' : 19,
+                        'name' : 'Child Mammoth Pass',
+                        'category' : 'Memberships',
+                        'price' : 0.00,
+                        'position' : 3
+                    },
+                    {
+                        'id' : 20,
+                        'name' : 'Family Mammoth Pass',
+                        'category' : 'Memberships',
+                        'price' : 70.00,
+                        'position' : 4
+                    },
+                    {
+                        'id' : 203,
+                        'name' : 'Gift Mammoth Pass',
+                        'category' : 'Memberships',
+                        'price' : 'variable',
+                        'position' : 5
+                    },
+                    {
+                        'id' : 17,
+                        'name' : 'Senior Mammoth Pass',
+                        'category' : 'Memberships',
+                        'price' : 30.00,
+                        'position' : 6
+                    },
+                    {
+                        'id' : 18,
+                        'name' : 'Youth Mammoth Pass',
+                        'category' : 'Memberships',
+                        'price' : 20.00,
+                        'position' : 7
+                    },
+                ]
+            });
             break;
         case '/ram/DateSelection.aspx':
             // user is checking calendar for dates for general admission
             console.log('viewing Admission date selection');
+
             break;
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
