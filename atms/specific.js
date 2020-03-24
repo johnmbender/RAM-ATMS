@@ -171,22 +171,27 @@ function ATMS(params) {
                     item_name = 'Senior Mammoth Pass';
                     item_category = 'Membership';
                     item_price = 30.00;
+                    break;
                 case 18:
                     item_name = 'Youth Mammoth Pass';
                     item_category = 'Membership';
                     item_price = 20.00;
+                    break;
                 case 19:
                     item_name = 'Child Mammoth Pass';
                     item_category = 'Membership';
                     item_price = 0.00;
+                    break;
                 case 20:
                     item_name = 'Family Mammoth Pass';
                     item_category = 'Membership';
                     item_price = 70.00;
+                    break;
                 case 203:
                     item_name = 'Gift Mammoth Pass';
                     item_category = 'Membership';
                     item_price = 'undetermined';
+                    break;
                 default:
                     console.log('No item value?');
                     return;
