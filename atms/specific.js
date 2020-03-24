@@ -135,10 +135,12 @@ admission.child = admission_child;
 
     $('input[title="Remove"]').on('click', function(event) {
         // remove item from cart
+        event.preventDefault();
+
         var parent = $(this).parent('tr');
-        var item_name = $(parent).find('.CartType').text();
-        var item_quantity = parseInt($(parent).find('.CartQuantity').text());
-        var item_price = parseInt($(parent).find('.CartPrice').text());
+        var item_name = $(parent).find('td.CartType').text();
+        var item_quantity = parseInt($(parent).find('td.CartQuantity').text());
+        var item_price = parseInt($(parent).find('td.CartPrice').text());
         var item_id = null;
 
         if (item_name == admission.adult.name) {
@@ -151,7 +153,7 @@ admission.child = admission_child;
             item_id = admission.child.id;
         } else {
             // no match, but don't stop processing
-            return true;
+            // return true;
         }
 
         var removeItem = {
@@ -162,7 +164,6 @@ admission.child = admission_child;
             'quantity' : item_quantity
         };
 
-        event.preventDefault();
         console.log('HALTED');
 
         console.log(removeItem);
