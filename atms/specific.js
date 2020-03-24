@@ -198,7 +198,7 @@ admission.child = admission_child;
         event.preventDefault();
 
         if (params == null || params.length == 0) {
-            return true;
+            $(this).trigger('click');
         } else if (params.sch.length > 0) {
             // viewing the admissions calendar
             var adults = $('#pricing_101:12:_').val();
@@ -208,7 +208,7 @@ admission.child = admission_child;
 
             if ((adults + seniors + youths + children) == 0) {
                 // no tickets added...
-                return true;
+                $(this).trigger('click');
             }
 
             var items = [];
@@ -239,7 +239,7 @@ admission.child = admission_child;
         } else if (params.item.length > 0) {
             // viewing a mammoth pass
         }
-        return true;
+        $(this).trigger('click');
     });
 
     $('input[title="Remove"]').on('click', function(event) {
@@ -261,7 +261,7 @@ admission.child = admission_child;
             item_id = admission.child.id;
         } else {
             // no match, but don't stop processing
-            return true;
+            $(this).trigger('click');
         }
 
         gtag('event', 'remove_from_cart', {
@@ -274,7 +274,7 @@ admission.child = admission_child;
             }]
         });
 
-        return true;
+        $(this).trigger('click');
     });
     // $('#pricing_116:16:_').on('change', function() {
     //     // changing number of adult Mammoth passes
