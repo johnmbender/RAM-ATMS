@@ -113,26 +113,27 @@ OrderCheckout.aspx
 
 (() => {
     // event-catching
-    $('#pricing_116:16:_').on('change', function() {
-        // changing number of adult Mammoth passes
-        var quantity = parseInt($(this).val());
-        var price = 35.00;
-        var totalValue = quantity * price;
 
-        gtag('event', 'add_to_cart', {
-            'value' : totalValue,
-            'currency' : 'CAD',
-            'items' : [
-                {
-                    'id' : '16',
-                    'name' : 'Adult Mammoth Pass',
-                    'category' : 'Annual Pass',
-                    'quantity' : quantity,
-                    'price' : price
-                }
-            ]
-        });
-    });
+    // $('#pricing_116:16:_').on('change', function() {
+    //     // changing number of adult Mammoth passes
+    //     var quantity = parseInt($(this).val());
+    //     var price = 35.00;
+    //     var totalValue = quantity * price;
+
+    //     gtag('event', 'add_to_cart', {
+    //         'value' : totalValue,
+    //         'currency' : 'CAD',
+    //         'items' : [
+    //             {
+    //                 'id' : '16',
+    //                 'name' : 'Adult Mammoth Pass',
+    //                 'category' : 'Annual Pass',
+    //                 'quantity' : quantity,
+    //                 'price' : price
+    //             }
+    //         ]
+    //     });
+    // });
 })();
 
 function ATMS(params) {
@@ -156,26 +157,52 @@ function ATMS(params) {
                 return;
             }
             var item = parseInt(params.item);
+            var item_name = 'undetermined';
+            var item_category = 'undetermined';
+            var item_price = 'undetermined';
             
             switch (item) {
                 case 16:
-                    gtag('event', 'view_item', {
-                        'items' : [
-                            {
-                                'id' : 16,
-                                'name' : 'Adult Mammoth Pass',
-                                'category' : 'Memberships',
-                                'variant' : 'Adult',
-                                'quantity' : 1,
-                                'price' : 35.00
-                            }
-                        ]
-                    });
+                    item_name = 'Adult Mammoth Pass';
+                    item_category = 'Membership';
+                    item_price = 35.00;
                     break;
+                case 17:
+                    item_name = 'Senior Mammoth Pass';
+                    item_category = 'Membership';
+                    item_price = 30.00;
+                case 18:
+                    item_name = 'Youth Mammoth Pass';
+                    item_category = 'Membership';
+                    item_price = 20.00;
+                case 19:
+                    item_name = 'Child Mammoth Pass';
+                    item_category = 'Membership';
+                    item_price = 0.00;
+                case 20:
+                    item_name = 'Family Mammoth Pass';
+                    item_category = 'Membership';
+                    item_price = 70.00;
+                case 203:
+                    item_name = 'Gift Mammoth Pass';
+                    item_category = 'Membership';
+                    item_price = 'undetermined';
                 default:
                     console.log('No item value?');
-                    console.log(params);
+                    return;
             }
+
+            // post to Analytics
+            gtag('event', 'view_item', {
+                'items' : [
+                    {
+                        'id' : item,
+                        'name' : item_name,
+                        'category' : item_category,
+                        'price' : item_price
+                    }
+                ]
+            });
 
             break;
         case '/ram/OrderSummary.aspx':
