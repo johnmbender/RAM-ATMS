@@ -195,10 +195,8 @@ admission.child = admission_child;
     // EVENT CATCHERS
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
         // check what's going into the cart
-        event.preventDefault();
-
         if (params == null || params.length == 0) {
-            $(this).trigger('click');
+            return true;
         } else if (params.sch.length > 0) {
             // viewing the admissions calendar
             var adults = $('#pricing_101:12:_').val();
@@ -208,7 +206,7 @@ admission.child = admission_child;
 
             if ((adults + seniors + youths + children) == 0) {
                 // no tickets added...
-                $(this).trigger('click');
+                return true;
             }
 
             var items = [];
@@ -239,12 +237,10 @@ admission.child = admission_child;
         } else if (params.item.length > 0) {
             // viewing a mammoth pass
         }
-        $(this).trigger('click');
+        return true;
     });
 
     $('input[title="Remove"]').on('click', function(event) {
-        event.preventDefault();
-
         var parent = $(this).closest('tr');
         var item_name = $(parent).find('.CartType').text();
         var item_quantity = parseInt($(parent).find('.CartQuantity').text());
@@ -261,7 +257,7 @@ admission.child = admission_child;
             item_id = admission.child.id;
         } else {
             // no match, but don't stop processing
-            $(this).trigger('click');
+            return true;
         }
 
         gtag('event', 'remove_from_cart', {
@@ -274,7 +270,7 @@ admission.child = admission_child;
             }]
         });
 
-        $(this).trigger('click');
+        return true;
     });
     // $('#pricing_116:16:_').on('change', function() {
     //     // changing number of adult Mammoth passes
