@@ -85,9 +85,6 @@ admission.senior = admission_senior;
 admission.youth = admission_youth;
 admission.child = admission_child;
 
-console.log(mammoth);
-console.log(admission);
-
 (() => {
     // EVENT CATCHERS
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
@@ -127,7 +124,9 @@ console.log(admission);
                 childTickets.quantity = seniors;
                 items.push(childTickets);
             }
-            
+            event.preventDefault();
+            console.log('HALTED!');
+            console.log(items);
             gtag('event', 'add_to_cart', {
                 'items' : items
             });
@@ -169,26 +168,6 @@ console.log(admission);
 
         return true;
     });
-    // $('#pricing_116:16:_').on('change', function() {
-    //     // changing number of adult Mammoth passes
-    //     var quantity = parseInt($(this).val());
-    //     var price = 35.00;
-    //     var totalValue = quantity * price;
-
-    //     gtag('event', 'add_to_cart', {
-    //         'value' : totalValue,
-    //         'currency' : 'CAD',
-    //         'items' : [
-    //             {
-    //                 'id' : '16',
-    //                 'name' : 'Adult Mammoth Pass',
-    //                 'category' : 'Annual Pass',
-    //                 'quantity' : quantity,
-    //                 'price' : price
-    //             }
-    //         ]
-    //     });
-    // });
 })();
 
 function ATMS(parameters) {
