@@ -124,9 +124,6 @@ admission.child = admission_child;
                 childTickets.quantity = seniors;
                 items.push(childTickets);
             }
-            event.preventDefault();
-            console.log('HALTED!');
-            console.log(items);
             gtag('event', 'add_to_cart', {
                 'items' : items
             });
