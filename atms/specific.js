@@ -153,14 +153,20 @@ admission.child = admission_child;
             return true;
         }
 
+        var removeItem = {
+            'id' : item_id,
+            'name' : item_name ,
+            'category' : 'Admissions',
+            'price' : item_price,
+            'quantity' : item_quantity
+        };
+
+        event.preventDefault();
+        console.log('HALTED');
+
+        console.log(removeItem);
         gtag('event', 'remove_from_cart', {
-            'items' : [{
-              'id' : item_id,
-              'name' : item_name ,
-              'category' : 'Admissions',
-              'price' : item_price,
-              'quantity' : item_quantity
-            }]
+            'items' : [removeItem]
         });
 
         return true;
