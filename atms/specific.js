@@ -93,10 +93,10 @@ admission.child = admission_child;
             return true;
         } else if (params.sch.length > 0) {
             // viewing the admissions calendar
-            var adults = $('#pricing_101:12:_').val();
-            var seniors = $('#pricing_109:12:_').val();
-            var youths = $('#pricing_102:12:_').val();
-            var children = $('#pricing_108:12:_').val();
+            var adults = $('#pricing_101\\:12\\:_').val();
+            var seniors = $('#pricing_109\\:12\\:_').val();
+            var youths = $('#pricing_102\\:12\\:_').val();
+            var children = $('#pricing_108\\:12\\:_').val();
 
             if ((adults + seniors + youths + children) == 0) {
                 // no tickets added...
