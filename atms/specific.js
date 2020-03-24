@@ -134,6 +134,7 @@ admission.child = admission_child;
     });
 
     $('input[title="Remove"]').on('click', function(event) {
+        // remove item from cart
         var parent = $(this).parent('tr');
         var item_name = $(parent).find('.CartType').text();
         var item_quantity = parseInt($(parent).find('.CartQuantity').text());
