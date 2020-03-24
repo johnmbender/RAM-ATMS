@@ -135,10 +135,8 @@ admission.child = admission_child;
 
     $('input[title="Remove"]').on('click', function(event) {
         // remove item from cart
-        event.preventDefault();
-        console.log($(this));
+        // event.preventDefault();
         var parent = $(this).parent('tr');
-        console.log(parent);
         var item_name = $(parent).find('td.CartType').text();
         var item_quantity = parseInt($(parent).find('td.CartQuantity').text().replace('$',''));
         var item_price = parseInt($(parent).find('td.CartPrice').text().replace('$',''));
@@ -165,9 +163,9 @@ admission.child = admission_child;
             'quantity' : item_quantity
         };
 
-        console.log('HALTED');
+        // console.log('HALTED');
 
-        console.log(removeItem);
+        // console.log(removeItem);
         gtag('event', 'remove_from_cart', {
             'items' : [removeItem]
         });
