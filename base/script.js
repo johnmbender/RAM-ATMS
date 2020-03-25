@@ -117,7 +117,7 @@
 		console.log(str);
 	}
 
-	if (window.location.host == 'atms.alberta.ca') {
+	if (window.location.host == 'atms.alberta.ca' || window.location.host == 'atmsuat.alberta.ca') {
         ATMS(retrieveURLparams());
     } else if (window.location.host == 'www.beanstream.com') {
         BeanStream(retrieveURLparams());
