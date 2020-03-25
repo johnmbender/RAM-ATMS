@@ -376,7 +376,11 @@ admission.child = admission_child;
 
 function ATMS(parameters) {
     // set params globally
+    console.log('ATMS called with parameters:');
+    console.log(parameters);
     params = parameters;
+    console.log('params are now:');
+    console.log(params);
 
     // we can only get intent here; no hard data
     switch (window.location.pathname) {
