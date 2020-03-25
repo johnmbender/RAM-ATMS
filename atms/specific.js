@@ -81,10 +81,15 @@ admission.child = admission_child;
 (() => {
     // EVENT CATCHERS
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
+        event.preventDefault();
+        console.log("HALTED");
+
         // check what's going into the cart
         if (params == null || params.length == 0) {
+            console.log('NO PARAMS');
             return true;
         } else if (params.sch.length > 0) {
+            console.log('viewing admissions calendar');
             // viewing the admissions calendar
             var adults = $('#pricing_101\\:12\\:_').val();
             var seniors = $('#pricing_109\\:12\\:_').val();
@@ -93,37 +98,57 @@ admission.child = admission_child;
 
             if ((adults + seniors + youths + children) == 0) {
                 // no tickets added...
+                console.log('no tickets added');
                 return true;
             }
+
+            console.log('tickets added:');
 
             var items = [];
             if (adults > 0) {
                 var adultTickets = admission.adult;
                 adultTickets.quantity = adults;
                 items.push(adultTickets);
+                console.log(adult + ' adult ticket(s) added');
             }
             if (seniors > 0) {
                 var seniorTickets = admission.senior;
                 seniorTickets.quantity = seniors;
                 items.push(seniorTickets);
+                console.log(seniors + ' senior ticket(s) added');
             }
             if (youths > 0) {
                 var youthTickets = admission.youth;
                 youthTickets.quantity = youths;
                 items.push(youthTickets);
+                console.log(youths + ' youth ticket(s) added');
             }
             if (children > 0) {
                 var childTickets = admission.child;
                 childTickets.quantity = seniors;
                 items.push(childTickets);
+                console.log(children + ' child ticket(s) added');
             }
+
+            if (items.length == 0) {
+                console.log('no items created to add to cart');
+                return;
+            }
+
+            console.log('items added to cart:');
+            console.log(items);
+
             gtag('event', 'add_to_cart', {
                 'items' : items
             });
+            console.log('EVENT SENT TO GTAG');
         } else if (params.item.length > 0) {
+            console.log('viewing mammoth passes');
             // viewing a mammoth pass
             var item_id = parseInt(params.item);
             var items = [];
+
+            console.log('viewing id ' + item_id);
 
             switch (item_id) {
                 case 16:
@@ -137,6 +162,8 @@ admission.child = admission_child;
                     }
                     new_item.value = new_item.quantity * new_item.price;
                     items.push(new_item);
+                    console.log('adult mammoth pass(es) added:');
+                    console.log(new_item);
                     break;
                 case 17:
                     // senior pass
@@ -149,6 +176,8 @@ admission.child = admission_child;
                     }
                     new_item.value = new_item.quantity * new_item.price;
                     items.push(new_item);
+                    console.log('senior mammoth pass(es) added:');
+                    console.log(new_item);
                     break;
                 case 18:
                     // youth pass
@@ -161,6 +190,8 @@ admission.child = admission_child;
                     }
                     new_item.value = new_item.quantity * new_item.price;
                     items.push(new_item);
+                    console.log('youth mammoth pass(es) added:');
+                    console.log(new_item);
                     break;
                 case 19:
                     // child pass
@@ -173,6 +204,8 @@ admission.child = admission_child;
                     }
                     new_item.value = new_item.quantity * new_item.price;
                     items.push(new_item);
+                    console.log('child mammoth pass(es) added:');
+                    console.log(new_item);
                     break;
                 case 20:
                     // family pass
@@ -185,8 +218,11 @@ admission.child = admission_child;
                     }
                     new_item.value = new_item.quantity * new_item.price;
                     items.push(new_item);
+                    console.log('family mammoth pass(es) added:');
+                    console.log(new_item);
                     break;
                 case 203:
+                    console.log('viewing gift mammoth passes');
                     // gift pass (multiple)
                     var gift_adult = $('#pricing_465\\:203\\:_').val();
                     var gift_senior = $('#pricing_467\\:203\\:_').val();
@@ -194,8 +230,11 @@ admission.child = admission_child;
                     var gift_family = $('#pricing_478\\:203\\:_').val();
 
                     if ((gift_adult + gift_senior + gift_youth + gift_family) == 0) {
+                        console.log('no gift passes added');
                         return true;
                     }
+
+                    console.log('gift pass(es) added...');
 
                     var items = [];
                     var totalValue = 0;
@@ -209,6 +248,8 @@ admission.child = admission_child;
                         }
                         totalValue += new_item.value;
                         items.push(new_item);
+                        console.log('adult gift mammoth pass(es) added:');
+                        console.log(new_item);
                     }
                     if (gift_senior > 0) {
                         var new_item = mammoth.senior;
@@ -220,6 +261,8 @@ admission.child = admission_child;
                         }
                         totalValue += new_item.value;
                         items.push(new_item);
+                        console.log('senior gift mammoth pass(es) added:');
+                        console.log(new_item);
                     }
                     if (gift_youth > 0) {
                         var new_item = mammoth.youth;
@@ -231,6 +274,8 @@ admission.child = admission_child;
                         }
                         totalValue += new_item.value;
                         items.push(new_item);
+                        console.log('youth gift mammoth pass(es) added:');
+                        console.log(new_item);
                     }
                     if (gift_family > 0) {
                         var new_item = mammoth.family;
@@ -242,26 +287,44 @@ admission.child = admission_child;
                         }
                         totalValue += new_item.value;
                         items.push(new_item);
+                        console.log('family gift mammoth pass(es) added:');
+                        console.log(new_item);
                     }
+
+                    if (items.length == 0) {
+                        console.log('no gift passes added');
+                        return true;
+                    }
+
+                    console.log("gift pass(es) added:");
+                    console.log(items);
 
                     gtag('event', 'add_to_cart', {
                         'items' : [ items ],
                         'value' : totalValue
                     });
+                    console.log('ITEMS SENT TO GTAG');
                 default:
                     // shouldn't occur, but less pass
+                    console.log('default hit');
                     return true;
             }
 
             if (items.length != 1) {
+                console.log('non-gift mammoth passes not added?');
                 return true;
             }
+
+            console.log('pass(es) added:');
+            console.log(items);
 
             gtag('event', 'add_to_cart', {
                 'items' : [ items ],
                 'value' : items[0].value
             });
+            console.log('ITEMS SENT TO GTAG');
         }
+        console.log('o hai');
         return true;
     });
 
