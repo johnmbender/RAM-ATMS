@@ -109,7 +109,7 @@ admission.child = admission_child;
                 var adultTickets = admission.adult;
                 adultTickets.quantity = adults;
                 items.push(adultTickets);
-                console.log(adult + ' adult ticket(s) added');
+                console.log(adults + ' adult ticket(s) added');
             }
             if (seniors > 0) {
                 var seniorTickets = admission.senior;
