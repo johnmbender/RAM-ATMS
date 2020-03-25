@@ -37,19 +37,12 @@ var pass_family = {
     category: 'Annual Pass',
     price: 70.00
 };
-var pass_gift = {
-    id: 203,
-    name: 'Gift a Mammoth Pass',
-    category: 'Annual Pass',
-    price: 'variable'
-}
 var mammoth = [];
 mammoth.adult = pass_adult;
 mammoth.child = pass_child;
 mammoth.youth = pass_youth;
 mammoth.senior = pass_senior;
 mammoth.family = pass_family;
-mammoth.gift = pass_gift;
 
 var admission = [];
 var admission_adult = {
@@ -129,43 +122,187 @@ admission.child = admission_child;
             });
         } else if (params.item.length > 0) {
             // viewing a mammoth pass
+            var item_id = parseInt(params.item);
+            var items = [];
+
+            switch (item_id) {
+                case 16:
+                    // adult pass
+                    var new_item = mammoth.adult;
+                    new_item.quantity = $('#pricing_116\\:16\\:_').val();
+                    if (new_item.quantity == 0) {
+                        return true;
+                    } else if (new_item.quantity > 1) {
+                        new_item.name = new_item.name + 'es';
+                    }
+                    new_item.value = new_item.quantity * new_item.price;
+                    items.push(new_item);
+                    break;
+                case 17:
+                    // senior pass
+                    var new_item = mammoth.senior;
+                    new_item.quantity = $('#pricing_119\\:17\\:_').val();
+                    if (new_item.quantity == 0) {
+                        return true;
+                    } else if (new_item.quantity > 1) {
+                        new_item.name = new_item.name + 'es';
+                    }
+                    new_item.value = new_item.quantity * new_item.price;
+                    items.push(new_item);
+                    break;
+                case 18:
+                    // youth pass
+                    var new_item = mammoth.youth;
+                    new_item.quantity = $('#pricing_120\\:18\\:_').val();
+                    if (new_item.quantity == 0) {
+                        return true;
+                    } else if (new_item.quantity > 1) {
+                        new_item.name = new_item.name + 'es';
+                    }
+                    new_item.value = new_item.quantity * new_item.price;
+                    items.push(new_item);
+                    break;
+                case 19:
+                    // child pass
+                    var new_item = mammoth.child;
+                    new_item.quantity = $('#pricing_177\\:19\\:_').val();
+                    if (new_item.quantity == 0) {
+                        return true;
+                    } else if (new_item.quantity > 1) {
+                        new_item.name = new_item.name + 'es';
+                    }
+                    new_item.value = new_item.quantity * new_item.price;
+                    items.push(new_item);
+                    break;
+                case 20:
+                    // family pass
+                    var new_item = mammoth.family;
+                    new_item.quantity = $('#pricing_177\\:19\\:_').val();
+                    if (new_item.quantity == 0) {
+                        return true;
+                    } else if (new_item.quantity > 1) {
+                        new_item.name = new_item.name + 'es';
+                    }
+                    new_item.value = new_item.quantity * new_item.price;
+                    items.push(new_item);
+                    break;
+                case 203:
+                    // gift pass (multiple)
+                    var gift_adult = $('#pricing_465\\:203\\:_').val();
+                    var gift_senior = $('#pricing_467\\:203\\:_').val();
+                    var gift_youth = $('#pricing_469\\:203\\:_').val();
+                    var gift_family = $('#pricing_478\\:203\\:_').val();
+
+                    if ((gift_adult + gift_senior + gift_youth + gift_family) == 0) {
+                        return true;
+                    }
+
+                    var items = [];
+                    var totalValue = 0;
+                    if (gift_adult > 0) {
+                        var new_item = mammoth.adult;
+                        new_item.quantity = gift_adult;
+                        new_item.value = new_item.quantity * new_item.price;
+                        new_item.name = 'Gifted Adult Annual Pass';
+                        if (new_item.quantity > 1) {
+                            new_item.name = new_item.name + 'es';
+                        }
+                        totalValue += new_item.value;
+                        items.push(new_item);
+                    }
+                    if (gift_senior > 0) {
+                        var new_item = mammoth.senior;
+                        new_item.quantity = gift_senior;
+                        new_item.value = new_item.quantity * new_item.price;
+                        new_item.name = 'Gifted Senior Annual Pass';
+                        if (new_item.quantity > 1) {
+                            new_item.name = new_item.name + 'es';
+                        }
+                        totalValue += new_item.value;
+                        items.push(new_item);
+                    }
+                    if (gift_youth > 0) {
+                        var new_item = mammoth.youth;
+                        new_item.quantity = gift_youth;
+                        new_item.value = new_item.quantity * new_item.price;
+                        new_item.name = 'Gifted Youth Annual Pass';
+                        if (new_item.quantity > 1) {
+                            new_item.name = new_item.name + 'es';
+                        }
+                        totalValue += new_item.value;
+                        items.push(new_item);
+                    }
+                    if (gift_family > 0) {
+                        var new_item = mammoth.family;
+                        new_item.quantity = gift_family;
+                        new_item.value = new_item.quantity * new_item.price;
+                        new_item.name = 'Gifted Family Annual Pass';
+                        if (new_item.quantity > 1) {
+                            new_item.name = new_item.name + 'es';
+                        }
+                        totalValue += new_item.value;
+                        items.push(new_item);
+                    }
+
+                    gtag('event', 'add_to_cart', {
+                        'items' : [ items ],
+                        'value' : totalValue
+                    });
+                default:
+                    // shouldn't occur, but less pass
+                    return true;
+            }
+
+            if (items.length != 1) {
+                return true;
+            }
+
+            gtag('event', 'add_to_cart', {
+                'items' : [ items ],
+                'value' : items[0].value
+            });
         }
         return true;
     });
 
     $('input[title="Remove"]').on('click', function(event) {
         // remove item from cart
-        // event.preventDefault();
+
         var parent = $(this).parent('tr');
+        var item_type = $(parent).find('td.CartItem.first p strong').text().trim();
         var item_name = $(parent).find('td.CartType').text();
         var item_quantity = parseInt($(parent).find('td.CartQuantity').text().replace('$',''));
         var item_price = parseInt($(parent).find('td.CartPrice').text().replace('$',''));
         var item_id = null;
+        var category = null;
 
-        if (item_name == admission.adult.name) {
-            item_id = admission.adult.id;
-        } else if (item_name == admission.youth.name) {
-            item_id = admission.youth.id;
-        } else if (item_name == admission.senior.name) {
-            item_id = admission.senior.id;
-        } else if (item_name == admission.child.name) {
-            item_id = admission.child.id;
-        } else {
-            // no match, but don't stop processing
-            // return true;
+        if (item_type == 'Admission') {
+            category = 'Admissions';
+
+            if (item_name == admission.adult.name) {
+                item_id = admission.adult.id;
+            } else if (item_name == admission.youth.name) {
+                item_id = admission.youth.id;
+            } else if (item_name == admission.senior.name) {
+                item_id = admission.senior.id;
+            } else if (item_name == admission.child.name) {
+                item_id = admission.child.id;
+            } else {
+                // no match, but don't stop processing
+                return true;
+            }
+        } else if (item_type == 'Annual Pass') { // ??
+            category = 'Annual Pass';
         }
 
         var removeItem = {
             'id' : item_id,
-            'name' : item_name ,
+            'name' : item_name,
             'category' : 'Admissions',
             'price' : item_price,
             'quantity' : item_quantity
         };
 
-        // console.log('HALTED');
-
-        // console.log(removeItem);
         gtag('event', 'remove_from_cart', {
             'items' : [removeItem]
         });
@@ -180,103 +317,169 @@ function ATMS(parameters) {
 
     // we can only get intent here; no hard data
     switch (window.location.pathname) {
+        case '/ram':
+        case '/ram/':
         case '/ram/Default.aspx':
             if (params == null) {
-                return;
-            }
-
-            if (params.tagId.length > 0) {
+                // viewing all items
+                console.log('View Sales Homepage');
+                gtag('event', 'view_item_list', {
+                    'items' : [
+                        {
+                            'id' : 12,
+                            'name' : 'Admission',
+                            'category' : 'Admissions',
+                            'position' : 1
+                        },
+                        {
+                            'id' : 16,
+                            'name' : 'Adult Mammoth Pass',
+                            'category' : 'Annual Pass',
+                            'price' : 35.00,
+                            'position' : 2
+                        },
+                        {
+                            'id' : 19,
+                            'name' : 'Child Mammoth Pass',
+                            'category' : 'Annual Pass',
+                            'price' : 0.00,
+                            'position' : 3
+                        },
+                        {
+                            'id' : 20,
+                            'name' : 'Family Mammoth Pass',
+                            'category' : 'Annual Pass',
+                            'price' : 70.00,
+                            'position' : 4
+                        },
+                        {
+                            'id' : 203,
+                            'name' : 'Gift Mammoth Pass',
+                            'category' : 'Annual Pass',
+                            'position' : 5
+                        },
+                        {
+                            'id' : 17,
+                            'name' : 'Senior Mammoth Pass',
+                            'category' : 'Annual Pass',
+                            'price' : 30.00,
+                            'position' : 6
+                        },
+                        {
+                            'id' : 18,
+                            'name' : 'Youth Mammoth Pass',
+                            'category' : 'Annual Pass',
+                            'price' : 20.00,
+                            'position' : 7
+                        }
+                    ]
+                });
+            } else if (params.tagId.length > 0) {
                 // viewing a specific category of items
                 var tagId = parseInt(params.tagId);
                 switch (tagId) {
                     case 1:
                         // admissions
+                        gtag('event', 'view_item_list', {
+                            'items' : [{
+                                'id' : 1,
+                                'name' : 'Admissions',
+                                'category' : 'Admissions'
+                            }]
+                        });
                         break;
                     case 2:
                         // learning
                         break;
                     case 3:
                         // annual pass
+                        gtag('event', 'view_item_list', {
+                            'items' : [
+                                {
+                                    'id' : 16,
+                                    'name' : 'Adult Mammoth Pass',
+                                    'category' : 'Annual Pass',
+                                    'price' : 35.00,
+                                    'position' : 1
+                                },
+                                {
+                                    'id' : 19,
+                                    'name' : 'Child Mammoth Pass',
+                                    'category' : 'Annual Pass',
+                                    'price' : 0.00,
+                                    'position' : 2
+                                },
+                                {
+                                    'id' : 20,
+                                    'name' : 'Family Mammoth Pass',
+                                    'category' : 'Annual Pass',
+                                    'price' : 70.00,
+                                    'position' : 3
+                                },
+                                {
+                                    'id' : 203,
+                                    'name' : 'Gift Mammoth Pass',
+                                    'category' : 'Annual Pass',
+                                    'position' : 4
+                                },
+                                {
+                                    'id' : 17,
+                                    'name' : 'Senior Mammoth Pass',
+                                    'category' : 'Annual Pass',
+                                    'price' : 30.00,
+                                    'position' : 4
+                                },
+                                {
+                                    'id' : 18,
+                                    'name' : 'Youth Mammoth Pass',
+                                    'category' : 'Annual Pass',
+                                    'price' : 20.00,
+                                    'position' : 6
+                                }
+                            ]
+                        });
                         break;
-
+                    default:
+                        // no action
+                        break;
                 }
             }
-            // viewing all of our offerings
-            console.log('viewing Sales Homepage');
-            gtag('event', 'view_item_list', {
-                'items' : [
-                    {
-                        'id' : 12,
-                        'name' : 'Admission',
-                        'category' : 'Admissions',
-                        'price' : 'variable',
-                        'position' : 1
-                    },
-                    {
-                        'id' : 16,
-                        'name' : 'Adult Mammoth Pass',
-                        'category' : 'Annual Pass',
-                        'price' : 35.00,
-                        'position' : 2
-                    },
-                    {
-                        'id' : 19,
-                        'name' : 'Child Mammoth Pass',
-                        'category' : 'Annual Pass',
-                        'price' : 0.00,
-                        'position' : 3
-                    },
-                    {
-                        'id' : 20,
-                        'name' : 'Family Mammoth Pass',
-                        'category' : 'Annual Pass',
-                        'price' : 70.00,
-                        'position' : 4
-                    },
-                    {
-                        'id' : 203,
-                        'name' : 'Gift Mammoth Pass',
-                        'category' : 'Annual Pass',
-                        'price' : 'variable',
-                        'position' : 5
-                    },
-                    {
-                        'id' : 17,
-                        'name' : 'Senior Mammoth Pass',
-                        'category' : 'Annual Pass',
-                        'price' : 30.00,
-                        'position' : 6
-                    },
-                    {
-                        'id' : 18,
-                        'name' : 'Youth Mammoth Pass',
-                        'category' : 'Annual Pass',
-                        'price' : 20.00,
-                        'position' : 7
-                    },
-                ]
-            });
             break;
         case '/ram/DateSelection.aspx':
             // user is checking calendar for dates for general admission
             console.log('viewing Admission date selection');
-
+            gtag('event', 'view_item', {
+                'items' : [
+                    {
+                        'id' : 1,
+                        'name' : 'Admission Calendar',
+                        'category' : 'Admissions'
+                    }
+                ]
+            });
             break;
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
-            // if there's a sch variable, it's a date selected for admission
             if (params.length == 0) {
                 console.log("ERROR: No parameters provided.");
                 return;
             } else if (params.sch.length > 0) {
-                // date selected to purchase admission
-                
+                // date (sch) selected to purchase admission
+                gtag('event', 'view_item', {
+                    'items' : [
+                        {
+                            'id' : 1,
+                            'name' : 'Admission Ticket Selection',
+                            'category' : 'Admissions'
+                        }
+                    ]
+                });
             } else if (params.item.length > 0) {
                 // mammoth pass selected for viewing
                 var item = parseInt(params.item);
                 var item_name = 'undetermined';
                 var item_category = 'undetermined';
-                var item_price = 'undetermined';
+                var item_price = null;
                 
                 switch (item) {
                     case 16:
@@ -307,7 +510,6 @@ function ATMS(parameters) {
                     case 203:
                         item_name = 'Gift Mammoth Pass';
                         item_category = 'Annual Pass';
-                        item_price = 'undetermined';
                         break;
                     default:
                         console.log('No item value?');
@@ -330,7 +532,7 @@ function ATMS(parameters) {
             break;
         case '/ram/OrderSummary.aspx':
             // user is viewing cart
-            // nothing to be tracked here (so delete case?)
+            
             break;
         case '/ram/Login.aspx':
             // user needs to Login or continue as Guest
@@ -360,7 +562,7 @@ function ATMS(parameters) {
                         item_id = admission.adult.id;
                     } else if (item_name == admission.senior) {
                         item_id = admission.senior.id;
-                    } else if (item_name == admiission.youth) {
+                    } else if (item_name == admission.youth) {
                         item_id = admission.youth.id;
                     } else if (item_name == admission.child) {
                         item_id = admission.child.id;
