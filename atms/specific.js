@@ -79,6 +79,12 @@ admission.youth = admission_youth;
 admission.child = admission_child;
 
 (() => {
+    params = retrieveURLparams();
+    eventCatchers();
+    pageLoad();
+})();
+
+function eventCatchers() {
     // EVENT CATCHERS
     $('a.js-select-date').on('click', function() {
         // catch the selected date on Admission calendar click
@@ -365,13 +371,10 @@ admission.child = admission_child;
 
         return true;
     });
-})();
+}
 
-function ATMS(parameters) {
+function pageLoad() {
     // set params globally
-    console.log('ATMS called with parameters:');
-    console.log(parameters);
-    params = parameters;
     console.log('params are now:');
     console.log(params);
 

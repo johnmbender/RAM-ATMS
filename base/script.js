@@ -2,6 +2,19 @@
  * 
  # @base/script.js
  */
+
+function retrieveURLparams() {
+	var regex = /[?&]([^=#]+)=([^&#]*)/g,
+	url = window.location.href,
+	params = {},
+	match;
+	while(match = regex.exec(url)) {
+		params[match[1]] = match[2];
+	}
+
+	return params;
+}
+
 (() => {
     $('.fa-bars').click(function() {
         $('.fa-bars').prop('aria-expanded', 'true');
@@ -90,36 +103,4 @@
 	}
 
     $('input[name="submitButton"]').addClass('btn btn-secondary');
-
-    function retrieveURLparams() {
-        var regex = /[?&]([^=#]+)=([^&#]*)/g,
-        url = window.location.href,
-        params = {},
-        match;
-        while(match = regex.exec(url)) {
-            params[match[1]] = match[2];
-        }
-
-        return params;
-    }
-
-    // function getParameterByName(name, url) {
-	// 	if (!url) url = window.location.href;
-	// 	name = name.replace(/[\[\]]/g, '\\$&');
-	// 	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-	// 		results = regex.exec(url);
-	// 	if (!results) return null;
-	// 	if (!results[2]) return '';
-	// 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
-	// }
-
-	function print(str) {
-		console.log(str);
-	}
-
-	if (window.location.host == 'atms.alberta.ca' || window.location.host == 'atmsuat.alberta.ca') {
-        ATMS(retrieveURLparams());
-    } else if (window.location.host == 'www.beanstream.com') {
-        BeanStream(retrieveURLparams());
-    }
 })();

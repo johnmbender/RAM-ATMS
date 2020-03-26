@@ -2,11 +2,20 @@
  * 
  # @beanstream/specific.js
 */
+var params;
+
 (() => {
+    params = retrieveURLparams();
     // event-catching
+    eventCatchers();
+    pageLoad();
 })();
 
-function BeanStream(params) {
+function eventCatchers() {
+    // event catchers here, if necessary
+}
+
+function pageLoad() {
     // hard data lives here
     switch (window.location.pathname) {
         case '/scripts/payment/payment.asp':
