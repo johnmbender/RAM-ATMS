@@ -2,6 +2,10 @@
 	padding-top: 10px;
 }
 
+h2 {
+	margin-top: 30px;
+}
+
 .table-no-top-border tr:first-of-type td {
 	border-top: 0 !important;
 }
