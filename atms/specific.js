@@ -93,12 +93,13 @@ admission.child = admission_child;
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
         event.preventDefault();
         console.log("HALTED");
+        console.log(params);
 
         // check what's going into the cart
-        if (params == null || params.length == null) {
+        if (params == null) {
             console.log('NO PARAMS');
             return true;
-        } else if (params.sch != null && params.sch.length > 0) {
+        } else if (params.sch != null) {
             console.log('viewing admissions calendar');
             // viewing the admissions calendar
             var adults = parseInt($('#pricing_101\\:12\\:_').val());
@@ -152,7 +153,7 @@ admission.child = admission_child;
                 'items' : items
             });
             console.log('EVENT SENT TO GTAG');
-        } else if (params.item != null && params.item.length > 0) {
+        } else if (params.item != null) {
             console.log('viewing mammoth passes');
             // viewing a mammoth pass
             var item_id = parseInt(params.item);
@@ -340,7 +341,6 @@ admission.child = admission_child;
 
     $('input[title="Remove"]').on('click', function(event) {
         // remove item from cart
-
         var parent = $(this).parent('tr');
         var item_type = $(parent).find('td.CartItem.first p strong').text().trim();
         var item_name = $(parent).find('td.CartType').text();
@@ -451,7 +451,7 @@ function ATMS(parameters) {
                         }
                     ]
                 });
-            } else if (params.tagId != null && params.tagId.length > 0) {
+            } else if (params.tagId != null) {
                 // viewing a specific category of items
                 var tagId = parseInt(params.tagId);
                 switch (tagId) {
@@ -537,10 +537,10 @@ function ATMS(parameters) {
             break;
         case '/ram/Selection.aspx':
             // user has selected a date or chosen a mammoth pass
-            if (params.length == 0) {
+            if (params == null) {
                 console.log("ERROR: No parameters provided.");
                 return;
-            } else if (params.sch != null && params.sch.length > 0) {
+            } else if (params.sch != null) {
                 // date (sch) selected to purchase admission
                 gtag('event', 'view_item', {
                     'items' : [
@@ -551,7 +551,7 @@ function ATMS(parameters) {
                         }
                     ]
                 });
-            } else if (params.item != null && params.item.length > 0) {
+            } else if (params.item != null) {
                 // mammoth pass selected for viewing
                 var item = parseInt(params.item);
                 var item_name = 'undetermined';
