@@ -530,7 +530,7 @@ function ATMS(parameters) {
             if (params.length == 0) {
                 console.log("ERROR: No parameters provided.");
                 return;
-            } else if (params.sch.length > 0) {
+            } else if (params.sch && params.sch.length > 0) {
                 // date (sch) selected to purchase admission
                 gtag('event', 'view_item', {
                     'items' : [
@@ -541,7 +541,7 @@ function ATMS(parameters) {
                         }
                     ]
                 });
-            } else if (params.item.length > 0) {
+            } else if (params.item && params.item.length > 0) {
                 // mammoth pass selected for viewing
                 var item = parseInt(params.item);
                 var item_name = 'undetermined';
