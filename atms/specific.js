@@ -91,16 +91,10 @@ admission.child = admission_child;
     });
 
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
-        event.preventDefault();
-        console.log("HALTED");
-        console.log(params);
-
         // check what's going into the cart
         if (params == null) {
-            console.log('NO PARAMS');
             return true;
         } else if (params.sch != null) {
-            console.log('viewing admissions calendar');
             // viewing the admissions calendar
             var adults = parseInt($('#pricing_101\\:12\\:_').val());
             var seniors = parseInt($('#pricing_109\\:12\\:_').val());
@@ -109,45 +103,34 @@ admission.child = admission_child;
 
             if ((adults + seniors + youths + children) == 0) {
                 // no tickets added...
-                console.log('no tickets added');
                 return true;
             }
-
-            console.log('tickets added:');
 
             var items = [];
             if (adults > 0) {
                 var adultTickets = admission.adult;
                 adultTickets.quantity = adults;
                 items.push(adultTickets);
-                console.log(adults + ' adult ticket(s) added');
             }
             if (seniors > 0) {
                 var seniorTickets = admission.senior;
                 seniorTickets.quantity = seniors;
                 items.push(seniorTickets);
-                console.log(seniors + ' senior ticket(s) added');
             }
             if (youths > 0) {
                 var youthTickets = admission.youth;
                 youthTickets.quantity = youths;
                 items.push(youthTickets);
-                console.log(youths + ' youth ticket(s) added');
             }
             if (children > 0) {
                 var childTickets = admission.child;
                 childTickets.quantity = seniors;
                 items.push(childTickets);
-                console.log(children + ' child ticket(s) added');
             }
 
             if (items.length == 0) {
-                console.log('no items created to add to cart');
                 return;
             }
-
-            console.log('items added to cart:');
-            console.log(items);
 
             gtag('event', 'add_to_cart', {
                 'items' : items
