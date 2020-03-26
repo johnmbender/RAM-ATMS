@@ -85,10 +85,10 @@ admission.child = admission_child;
         console.log("HALTED");
 
         // check what's going into the cart
-        if (params == null || params.length == 0) {
+        if (params == null || params.length == null) {
             console.log('NO PARAMS');
             return true;
-        } else if (params.sch.length > 0) {
+        } else if (params.sch != null && params.sch.length > 0) {
             console.log('viewing admissions calendar');
             // viewing the admissions calendar
             var adults = parseInt($('#pricing_101\\:12\\:_').val());
@@ -142,7 +142,7 @@ admission.child = admission_child;
                 'items' : items
             });
             console.log('EVENT SENT TO GTAG');
-        } else if (params.item.length > 0) {
+        } else if (params.item != null && params.item.length > 0) {
             console.log('viewing mammoth passes');
             // viewing a mammoth pass
             var item_id = parseInt(params.item);
@@ -441,7 +441,7 @@ function ATMS(parameters) {
                         }
                     ]
                 });
-            } else if (params.tagId.length > 0) {
+            } else if (params.tagId != null && params.tagId.length > 0) {
                 // viewing a specific category of items
                 var tagId = parseInt(params.tagId);
                 switch (tagId) {
@@ -530,7 +530,7 @@ function ATMS(parameters) {
             if (params.length == 0) {
                 console.log("ERROR: No parameters provided.");
                 return;
-            } else if (params.sch && params.sch.length > 0) {
+            } else if (params.sch != null && params.sch.length > 0) {
                 // date (sch) selected to purchase admission
                 gtag('event', 'view_item', {
                     'items' : [
@@ -541,7 +541,7 @@ function ATMS(parameters) {
                         }
                     ]
                 });
-            } else if (params.item && params.item.length > 0) {
+            } else if (params.item != null && params.item.length > 0) {
                 // mammoth pass selected for viewing
                 var item = parseInt(params.item);
                 var item_name = 'undetermined';
