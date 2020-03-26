@@ -91,10 +91,10 @@ admission.child = admission_child;
         } else if (params.sch.length > 0) {
             console.log('viewing admissions calendar');
             // viewing the admissions calendar
-            var adults = $('#pricing_101\\:12\\:_').val();
-            var seniors = $('#pricing_109\\:12\\:_').val();
-            var youths = $('#pricing_102\\:12\\:_').val();
-            var children = $('#pricing_108\\:12\\:_').val();
+            var adults = parseInt($('#pricing_101\\:12\\:_').val());
+            var seniors = parseInt($('#pricing_109\\:12\\:_').val());
+            var youths = parseInt($('#pricing_102\\:12\\:_').val());
+            var children = parseInt($('#pricing_108\\:12\\:_').val());
 
             if ((adults + seniors + youths + children) == 0) {
                 // no tickets added...
@@ -154,7 +154,7 @@ admission.child = admission_child;
                 case 16:
                     // adult pass
                     var new_item = mammoth.adult;
-                    new_item.quantity = $('#pricing_116\\:16\\:_').val();
+                    new_item.quantity = parseInt($('#pricing_116\\:16\\:_').val());
                     if (new_item.quantity == 0) {
                         return true;
                     } else if (new_item.quantity > 1) {
@@ -168,7 +168,7 @@ admission.child = admission_child;
                 case 17:
                     // senior pass
                     var new_item = mammoth.senior;
-                    new_item.quantity = $('#pricing_119\\:17\\:_').val();
+                    new_item.quantity = parseInt($('#pricing_119\\:17\\:_').val());
                     if (new_item.quantity == 0) {
                         return true;
                     } else if (new_item.quantity > 1) {
@@ -182,7 +182,7 @@ admission.child = admission_child;
                 case 18:
                     // youth pass
                     var new_item = mammoth.youth;
-                    new_item.quantity = $('#pricing_120\\:18\\:_').val();
+                    new_item.quantity = parseInt($('#pricing_120\\:18\\:_').val());
                     if (new_item.quantity == 0) {
                         return true;
                     } else if (new_item.quantity > 1) {
@@ -196,7 +196,7 @@ admission.child = admission_child;
                 case 19:
                     // child pass
                     var new_item = mammoth.child;
-                    new_item.quantity = $('#pricing_177\\:19\\:_').val();
+                    new_item.quantity = parseInt($('#pricing_177\\:19\\:_').val());
                     if (new_item.quantity == 0) {
                         return true;
                     } else if (new_item.quantity > 1) {
@@ -210,7 +210,7 @@ admission.child = admission_child;
                 case 20:
                     // family pass
                     var new_item = mammoth.family;
-                    new_item.quantity = $('#pricing_177\\:19\\:_').val();
+                    new_item.quantity = parseInt($('#pricing_177\\:19\\:_').val());
                     if (new_item.quantity == 0) {
                         return true;
                     } else if (new_item.quantity > 1) {
@@ -224,10 +224,10 @@ admission.child = admission_child;
                 case 203:
                     console.log('viewing gift mammoth passes');
                     // gift pass (multiple)
-                    var gift_adult = $('#pricing_465\\:203\\:_').val();
-                    var gift_senior = $('#pricing_467\\:203\\:_').val();
-                    var gift_youth = $('#pricing_469\\:203\\:_').val();
-                    var gift_family = $('#pricing_478\\:203\\:_').val();
+                    var gift_adult = parseInt($('#pricing_465\\:203\\:_').val());
+                    var gift_senior = parseInt($('#pricing_467\\:203\\:_').val());
+                    var gift_youth = parseInt($('#pricing_469\\:203\\:_').val());
+                    var gift_family = parseInt($('#pricing_478\\:203\\:_').val());
 
                     if ((gift_adult + gift_senior + gift_youth + gift_family) == 0) {
                         console.log('no gift passes added');
