@@ -80,6 +80,16 @@ admission.child = admission_child;
 
 (() => {
     // EVENT CATCHERS
+    $('a.js-select-date').on('click', function() {
+        // catch the selected date on Admission calendar click
+        var selected_date = $(this).attr('data-scheduledate');
+        gtag('event', 'select_content', {
+            'items' : [],
+            'content_type' : 'Admissions',
+            'content_id' : selected_date
+        });
+    });
+
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
         event.preventDefault();
         console.log("HALTED");
