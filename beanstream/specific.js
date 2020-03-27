@@ -24,6 +24,7 @@ function pageLoad() {
     console.log(window.location.pathname);
     switch (window.location.pathname) {
         case '/scripts/payment/payment.asp':
+            console.log('seriously WTF');
             // ref1 is our key for confirmation pointing to ATMS' "order" variable
             // trnAmount is the total dollar value processing
             var cartValue = 0;
