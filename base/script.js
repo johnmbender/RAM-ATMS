@@ -102,3 +102,5 @@ function adjustHeader(scroll) {
 }
 
 $('input[name="submitButton"]').addClass('btn btn-secondary');
+
+console.log('finished loading base/script.js');

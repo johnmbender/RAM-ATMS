@@ -5,17 +5,21 @@
 var params;
 
 (() => {
+    console.log('start');
     params = retrieveURLparams();
     // event-catching
     eventCatchers();
     pageLoad();
+    console.log('end');
 })();
 
 function eventCatchers() {
     // event catchers here, if necessary
+    console.log('eventCatchers');
 }
 
 function pageLoad() {
+    console.log('pageLoad');
     // hard data lives here
     switch (window.location.pathname) {
         case '/scripts/payment/payment.asp':
