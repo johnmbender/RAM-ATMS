@@ -29,13 +29,18 @@ function pageLoad() {
             // trnAmount is the total dollar value processing
             var cartValue = 0;
             if (params == null) {
+                console.log('no params?:');
+                console.log(params);
                 return true;
             }
             if (params.trnAmount == null) {
+                console.log('no trnAmount?:');
+                console.log(params.trnAmount);
                 return true;
             }
 
             cartValue = params.trnAmount;
+            console.log('cart value: ' + cartValue);
             gtag('event', 'checkout_progress', {
                 'value' : cartValue,
                 'checkout_step' : 2
