@@ -28,10 +28,10 @@ function pageLoad() {
             // ref1 is our key for confirmation pointing to ATMS' "order" variable
             // trnAmount is the total dollar value processing
             var cartValue = 0;
-            if (params.length == 0) {
+            if (params == null) {
                 return true;
             }
-            if (params.trnAmount.length == 0) {
+            if (params.trnAmount == nulll) {
                 return true;
             }
 
