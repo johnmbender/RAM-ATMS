@@ -39,8 +39,10 @@ function pageLoad() {
                 'checkout_step' : 2
             });
             break;
-        case 'OTHERS':
+        default:
             // CC declined, etc. capture? or no?
             break;
+        
     }
+    console.log('end of pageLoad()');
 }
