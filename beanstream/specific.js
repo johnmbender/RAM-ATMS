@@ -4,13 +4,14 @@
 */
 var params;
 
-console.log('start');
-params = retrieveURLparams();
-// event-catching
-eventCatchers();
-pageLoad();
-console.log('end');
-
+(() => {
+    console.log('start');
+    params = retrieveURLparams();
+    // event-catching
+    eventCatchers();
+    pageLoad();
+    console.log('end');
+})();
 
 function eventCatchers() {
     // event catchers here, if necessary

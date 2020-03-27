@@ -5,8 +5,6 @@
 NOTE: while in Selection.aspx, I also saw SaleResponse.aspx, which seems AJAX-y
 */
 
-var params = null;
-
 var pass_adult = {
     id: 16,
     name: 'Adult Mammoth Pass',
@@ -78,11 +76,9 @@ admission.senior = admission_senior;
 admission.youth = admission_youth;
 admission.child = admission_child;
 
-(() => {
-    params = retrieveURLparams();
-    eventCatchers();
-    pageLoad();
-})();
+var params = retrieveURLparams();
+eventCatchers();
+pageLoad();
 
 function eventCatchers() {
     // EVENT CATCHERS
