@@ -31,7 +31,7 @@ function pageLoad() {
             if (params == null) {
                 return true;
             }
-            if (params.trnAmount == nulll) {
+            if (params.trnAmount == null) {
                 return true;
             }
 
