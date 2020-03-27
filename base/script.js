@@ -5,7 +5,7 @@
 
 function retrieveURLparams() {
 	var regex = /[?&]([^=#]+)=([^&#]*)/g,
-	url = window.location.href,
+	url = decodeURIComponent(window.location.href),
 	params = {},
 	match;
 	while(match = regex.exec(url)) {
