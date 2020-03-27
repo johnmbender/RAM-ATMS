@@ -21,6 +21,7 @@ function eventCatchers() {
 function pageLoad() {
     console.log('pageLoad');
     // hard data lives here
+    console.log(window.location.pathname);
     switch (window.location.pathname) {
         case '/scripts/payment/payment.asp':
             // ref1 is our key for confirmation pointing to ATMS' "order" variable
@@ -38,6 +39,7 @@ function pageLoad() {
                 'value' : cartValue,
                 'checkout_step' : 2
             });
+            console.log("I gtag'd?");
             break;
     }
     console.log('end of pageLoad()');
