@@ -390,6 +390,7 @@ function pageLoad() {
         case '/ram':
         case '/ram/':
         case '/ram/Default.aspx':
+        case '/ram/default.aspx':
             console.log('looking at ' + window.location.pathname);
             if (params == null) {
                 console.log('no params');
