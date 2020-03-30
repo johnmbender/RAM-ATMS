@@ -127,7 +127,11 @@ function eventCatchers() {
 
             var items = [];
             if (adults > 0) {
+                console.log('we have ' + adults + ' adults');
                 var adultTickets = admission.adult;
+                console.log('unedited adult info is: ');
+                console.table(adultTickets);
+                confirm('UGH');
                 adultTickets.quantity = adults;
                 items.push(adultTickets);
             }
@@ -164,8 +168,6 @@ function eventCatchers() {
             // viewing a mammoth pass
             var item_id = parseInt(params.item);
             var items = [];
-
-            console.log('viewing id ' + item_id);
 
             switch (item_id) {
                 case 16:
