@@ -516,16 +516,7 @@ function pageLoad() {
             break;
         case '/ram/DateSelection.aspx':
             // user is checking calendar for dates for general admission
-            if (params != null) console.table(params);
-            gtag('event', 'view_item', {
-                'items' : [
-                    {
-                        'id' : 1,
-                        'name' : 'Admission Calendar',
-                        'category' : 'Admissions'
-                    }
-                ]
-            });
+            // we don't need to track anything as there's no intent yet
             break;
         case '/ram/Selection.aspx':
             if (params != null) console.table(params);
