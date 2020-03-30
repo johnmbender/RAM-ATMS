@@ -5,80 +5,95 @@
 NOTE: while in Selection.aspx, I also saw SaleResponse.aspx, which seems AJAX-y
 */
 
-var pass_adult = {
-    id: 16,
-    name: 'Adult Mammoth Pass',
-    category: 'Annual Pass',
-    price: 35.00
-};
-var pass_child = {
-    id: 19,
-    name: 'Child Mammoth Pass',
-    category: 'Annual Pass',
-    price: 0.00
-};
-var pass_youth = {
-    id: 18,
-    name: 'Youth Mammoth Pass',
-    category: 'Annual Pass',
-    price: 20.00
-};
-var pass_senior = {
-    id: 17,
-    name: 'Senior Mammoth Pass',
-    category: 'Annual Pass',
-    price: 30.00
-};
-var pass_family = {
-    id: 20,
-    name: 'Family Mammoth Pass',
-    category: 'Annual Pass',
-    price: 70.00
-};
+// store Mammoth Pass and Admission info in global vars
 var mammoth = [];
-mammoth.adult = pass_adult;
-mammoth.child = pass_child;
-mammoth.youth = pass_youth;
-mammoth.senior = pass_senior;
-mammoth.family = pass_family;
-
 var admission = [];
-var admission_adult = {
-    id: 101,
-    name: 'Public Adult (18 to 64)',
-    category: 'Admissions',
-    price: 19.00,
-    quantity: 0
-};
-var admission_senior = {
-    id: 109,
-    name: 'Public Senior (65+)',
-    category: 'Admissions',
-    price: 14.00,
-    quantity: 0
-};
-var admission_youth = {
-    id: 102,
-    name: 'Public Youth (7 to 17)',
-    category: 'Admissions',
-    price: 10.00,
-    quantity: 0
-};
-var admission_child = {
-    id: 108,
-    name: 'Public Child (6 and under)',
-    category: 'Admissions',
-    price: 0.00,
-    quantity: 0
-};
-admission.adult = admission_adult;
-admission.senior = admission_senior;
-admission.youth = admission_youth;
-admission.child = admission_child;
 
+// get any page parameters
 var params = retrieveURLparams();
+
+// load the Mammoth Pass and Admission info
+loadItems();
+
+// gather any event catchers that will catch when user interacts with the page
 eventCatchers();
+
+// process any gtag events based on the current page load
 pageLoad();
+
+function loadItems() {
+    // Mammoth Pass info
+    var pass_adult = {
+        id: 16,
+        name: 'Adult Mammoth Pass',
+        category: 'Annual Pass',
+        price: 35.00
+    };
+    var pass_child = {
+        id: 19,
+        name: 'Child Mammoth Pass',
+        category: 'Annual Pass',
+        price: 0.00
+    };
+    var pass_youth = {
+        id: 18,
+        name: 'Youth Mammoth Pass',
+        category: 'Annual Pass',
+        price: 20.00
+    };
+    var pass_senior = {
+        id: 17,
+        name: 'Senior Mammoth Pass',
+        category: 'Annual Pass',
+        price: 30.00
+    };
+    var pass_family = {
+        id: 20,
+        name: 'Family Mammoth Pass',
+        category: 'Annual Pass',
+        price: 70.00
+    };
+    mammoth.adult = pass_adult;
+    mammoth.child = pass_child;
+    mammoth.youth = pass_youth;
+    mammoth.senior = pass_senior;
+    mammoth.family = pass_family;
+
+    // Admissions info
+    var admission = [];
+    var admission_adult = {
+        id: 101,
+        name: 'Public Adult (18 to 64)',
+        category: 'Admissions',
+        price: 19.00,
+        quantity: 0
+    };
+    var admission_senior = {
+        id: 109,
+        name: 'Public Senior (65+)',
+        category: 'Admissions',
+        price: 14.00,
+        quantity: 0
+    };
+    var admission_youth = {
+        id: 102,
+        name: 'Public Youth (7 to 17)',
+        category: 'Admissions',
+        price: 10.00,
+        quantity: 0
+    };
+    var admission_child = {
+        id: 108,
+        name: 'Public Child (6 and under)',
+        category: 'Admissions',
+        price: 0.00,
+        quantity: 0
+    };
+    admission.adult = admission_adult;
+    admission.senior = admission_senior;
+    admission.youth = admission_youth;
+    admission.child = admission_child;
+}
 
 function eventCatchers() {
     // EVENT CATCHERS
@@ -370,11 +385,7 @@ function eventCatchers() {
 }
 
 function pageLoad() {
-    // set params globally
-    console.log('params are now:');
-    console.log(params);
-
-    // we can only get intent here; no hard data
+    console.table(params);
     switch (window.location.pathname) {
         case '/ram':
         case '/ram/':

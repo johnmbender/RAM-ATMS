@@ -3,6 +3,13 @@
  # @base/script.js
  */
 
+// reposition elements based on window size
+reposition();
+
+// set nav as phat by default
+var nav = 'phat';
+
+// grab any existing page URL parameters and return them
 function retrieveURLparams() {
 	var regex = /[?&]([^=#]+)=([^&#]*)/g,
 	url = decodeURIComponent(window.location.href),
@@ -15,6 +22,7 @@ function retrieveURLparams() {
 	return params;
 }
 
+// control the hamburger menu
 $('.fa-bars').click(function() {
 	$('.fa-bars').prop('aria-expanded', 'true');
 	$('#nav-overlay').css('height', '100%');
@@ -24,8 +32,7 @@ $('#overlay-close-button').click(function() {
 	$('#nav-overlay').css('height', '0%');
 });
 
-reposition();
-
+// hover events on social media icons
 $('#social-media img').on('mouseenter', function() {
 	var src = $(this).attr('src').replace('.png','-black.png');
 	$(this).attr('src',src);
@@ -34,6 +41,7 @@ $('#social-media img').on('mouseenter', function() {
 	$(this).attr('src',src);
 });
 
+// position elements based on screen resolution or resizing
 function reposition() {
 	if ($(document).scrollTop() > 0) {
 		$(document).trigger('scroll');
@@ -53,13 +61,12 @@ function reposition() {
 	$('#thin').css('padding-top', thin_nav_padding + 'px');
 }
 
-var nav = 'phat';
-
 // on device rotation, reload page
 $(window).on('orientationchange', function() {
 	location.reload();
 });
 
+// window resized
 $(window).resize(function(e) {
 	reposition();
 });
@@ -68,12 +75,13 @@ $(window).resize(function(e) {
 var headerHeight = null;
 var header_parallax = 3;
 
+// adjust header to shrink as page is scrolled
 $(document).scroll(function(e) {
 	var scroll = $(document).scrollTop();
-
 	adjustHeader(scroll);
 });
 
+// header adjust on scroll
 function adjustHeader(scroll) {
 	var top = -scroll / header_parallax;
 	var header_top = $('header').height() + top;
@@ -101,6 +109,5 @@ function adjustHeader(scroll) {
 		return;
 }
 
+// add bootstrap classes to buttons on ATMS for design
 $('input[name="submitButton"]').addClass('btn btn-secondary');
-
-console.log('finished loading base/script.js');
