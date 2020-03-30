@@ -560,7 +560,7 @@ function pageLoad() {
                     'items' : [
                         {
                             'id' : 1,
-                            'name' : 'Admission Ticket Selection',
+                            'name' : 'Admission Ticket(s) Selection',
                             'category' : 'Admissions'
                         }
                     ]
