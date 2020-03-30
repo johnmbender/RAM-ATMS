@@ -139,15 +139,10 @@ function eventCatchers() {
             if (items.length == 0) {
                 return;
             }
-
-            console.log('added:');
-            console.table(items);
-            var cont = confirm('continue?');
             
             gtag('event', 'add_to_cart', {
                 'items' : items
             });
-            console.log('EVENT SENT TO GTAG');
         } else if (params.item != null) {
             console.log('viewing mammoth passes');
             // viewing a mammoth pass
