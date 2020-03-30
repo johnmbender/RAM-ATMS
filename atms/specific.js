@@ -459,6 +459,13 @@ function pageLoad() {
                         break;
                     case 2:
                         // learning (programs?)
+                        gtag('event', 'view_item_list', {
+                            'items' : [{
+                                'id': 2,
+                                'name' : 'Learning',
+                                'category' : 'Learning'
+                            }]
+                        });
                         break;
                     case 3:
                         // annual pass
