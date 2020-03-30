@@ -18,8 +18,7 @@ function retrieveURLparams() {
 	while(match = regex.exec(url)) {
 		params[match[1]] = match[2];
 	}
-
-	return params;
+	return $.isEmptyObject(params) ? null : params;
 }
 
 // control the hamburger menu
