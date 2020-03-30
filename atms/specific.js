@@ -533,6 +533,17 @@ function pageLoad() {
             }
             break;
         case '/ram/DateSelection.aspx':
+            console.log('dateSelection page for admissions');
+            gtag('event', 'view_item', {
+                'items' : [
+                    {
+                        'id' : 1,
+                        'name' : 'Admission Tickets Date Selection',
+                        'category' : 'Admissions'
+                    }
+                ]
+            });
+            console.log('gtag sent');
             // user is checking calendar for dates for general admission
             // we don't need to track anything as there's no intent yet
             break;
