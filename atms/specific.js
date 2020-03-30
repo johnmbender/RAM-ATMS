@@ -98,9 +98,6 @@ function eventCatchers() {
     });
 
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
-        event.preventDefault();
-        console.table(admission);   
-        console.log('Continue button pressed');
         // check what's going into the cart
         if (params == null) {
             return true;
@@ -119,11 +116,7 @@ function eventCatchers() {
 
             var items = [];
             if (adults > 0) {
-                console.log('we have ' + adults + ' adults');
                 var adultTickets = admission.adult;
-                console.log('unedited adult info is: ');
-                console.table(adultTickets);
-                confirm('UGH');
                 adultTickets.quantity = adults;
                 items.push(adultTickets);
             }
