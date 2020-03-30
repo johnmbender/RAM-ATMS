@@ -328,6 +328,8 @@ function eventCatchers() {
     });
 
     $('input[title="Remove"]').on('click', function(event) {
+        event.preventDefault();
+        console.log('removing an item from cart');
         // remove item from cart
         var parent = $(this).parent('tr');
         var item_type = $(parent).find('td.CartItem.first p strong').text().trim();
@@ -363,6 +365,9 @@ function eventCatchers() {
             'price' : item_price,
             'quantity' : item_quantity
         };
+
+        console.log('removing:');
+        console.table(removeItem);
 
         gtag('event', 'remove_from_cart', {
             'items' : [removeItem]
@@ -612,7 +617,6 @@ function pageLoad() {
             break;
         case '/ram/ordersummary.aspx':
             // user is viewing cart
-            
             break;
         case '/ram/login.aspx':
             // user needs to Login or continue as Guest
