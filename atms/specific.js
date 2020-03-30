@@ -391,8 +391,8 @@ function pageLoad() {
         case '/ram/':
         case '/ram/default.aspx':
             console.log('looking at ' + window.location.pathname);
-            if (params == null) {
-                console.log('no params');
+            if (params == null || (params != null) && params.tagid != null && parseInt(params.tagid) == 0) {
+                console.log('no params, or all items');
                 // viewing all items
                 gtag('event', 'view_item_list', {
                     'items' : [
