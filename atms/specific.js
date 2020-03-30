@@ -557,6 +557,7 @@ function pageLoad() {
                 return;
             } else if (params.sch != null) {
                 // date (sch) selected to purchase admission
+                console.log('viewing a selected date for purchasing admission');
                 gtag('event', 'view_item', {
                     'items' : [
                         {
@@ -566,7 +567,8 @@ function pageLoad() {
                         }
                     ]
                 });
-            } else if (params.item != null) {
+                console.log('gtag sent');
+            } else if (params.item != null) { // JOVI
                 // mammoth pass selected for viewing
                 var item = parseInt(params.item);
                 var item_name = 'undetermined';
