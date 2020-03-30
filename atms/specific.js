@@ -385,14 +385,12 @@ function eventCatchers() {
 }
 
 function pageLoad() {
-    console.table(params);
     switch (window.location.pathname) {
         case '/ram':
         case '/ram/':
         case '/ram/Default.aspx':
             if (params == null) {
                 // viewing all items
-                console.log('View Sales Homepage');
                 gtag('event', 'view_item_list', {
                     'items' : [
                         {
@@ -445,6 +443,7 @@ function pageLoad() {
                     ]
                 });
             } else if (params.tagId != null) {
+                console.table(params);
                 // viewing a specific category of items
                 var tagId = parseInt(params.tagId);
                 switch (tagId) {
@@ -459,7 +458,7 @@ function pageLoad() {
                         });
                         break;
                     case 2:
-                        // learning
+                        // learning (programs?)
                         break;
                     case 3:
                         // annual pass
@@ -517,7 +516,7 @@ function pageLoad() {
             break;
         case '/ram/DateSelection.aspx':
             // user is checking calendar for dates for general admission
-            console.log('viewing Admission date selection');
+            if (params != null) console.table(params);
             gtag('event', 'view_item', {
                 'items' : [
                     {
@@ -529,9 +528,11 @@ function pageLoad() {
             });
             break;
         case '/ram/Selection.aspx':
+            if (params != null) console.table(params);
+
             // user has selected a date or chosen a mammoth pass
             if (params == null) {
-                console.log("ERROR: No parameters provided.");
+                console.assert(params == null, 'No parameters!');
                 return;
             } else if (params.sch != null) {
                 // date (sch) selected to purchase admission
