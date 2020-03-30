@@ -446,12 +446,12 @@ function pageLoad() {
                     ]
                 });
                 console.log('gtag sent');
-            } else if (params.tagId != null) {
+            } else if (params.tagid != null) {
                 console.table(params);
                 // viewing a specific category of items
-                var tagId = parseInt(params.tagId);
-                console.log('tagId: ' + tagId);
-                switch (tagId) {
+                var tagid = parseInt(params.tagid);
+                console.log('tagId: ' + tagid);
+                switch (tagid) {
                     case 1:
                         // admissions
                         console.log('admissions');
