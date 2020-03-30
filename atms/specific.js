@@ -331,11 +331,15 @@ function eventCatchers() {
         event.preventDefault();
         console.log('removing an item from cart');
         // remove item from cart
-        var parent = $(this).parent('tr');
-        var item_type = $(parent).find('td.CartItem.first p strong').text().trim();
-        var item_name = $(parent).find('td.CartType').text().trim();
-        var item_quantity = parseInt($(parent).find('td.CartQuantity').text().trim().replace('$',''));
-        var item_price = parseInt($(parent).find('td.CartPrice').text().trim().replace('$',''));
+        var parentRow = $(this).parent('tr');
+        console.log('clicked:');
+        console.log($(this));
+        console.log('parent is: ');
+        console.log(parentRow);
+        var item_type = $(parentRow).find('td.CartItem.first p strong').text().trim();
+        var item_name = $(parentRow).find('td.CartType').text().trim();
+        var item_quantity = parseInt($(parentRow).find('td.CartQuantity').text().trim().replace('$',''));
+        var item_price = parseInt($(parentRow).find('td.CartPrice').text().trim().replace('$',''));
         var item_id = null;
         var category = null;
 
