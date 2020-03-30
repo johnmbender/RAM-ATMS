@@ -23,76 +23,66 @@ pageLoad();
 
 function loadItems() {
     // Mammoth Pass info
-    var pass_adult = {
+    mammoth.adult = {
         id: 16,
         name: 'Adult Mammoth Pass',
         category: 'Annual Pass',
         price: 35.00
     };
-    var pass_child = {
+    mammoth.child = {
         id: 19,
         name: 'Child Mammoth Pass',
         category: 'Annual Pass',
         price: 0.00
     };
-    var pass_youth = {
+    mammoth.youth = {
         id: 18,
         name: 'Youth Mammoth Pass',
         category: 'Annual Pass',
         price: 20.00
     };
-    var pass_senior = {
+    mammoth.senior = {
         id: 17,
         name: 'Senior Mammoth Pass',
         category: 'Annual Pass',
         price: 30.00
     };
-    var pass_family = {
+    mammoth.family = {
         id: 20,
         name: 'Family Mammoth Pass',
         category: 'Annual Pass',
         price: 70.00
     };
-    mammoth.adult = pass_adult;
-    mammoth.child = pass_child;
-    mammoth.youth = pass_youth;
-    mammoth.senior = pass_senior;
-    mammoth.family = pass_family;
 
     // Admissions info
-    var admission = [];
-    var admission_adult = {
+    admission.adult = {
         id: 101,
         name: 'Public Adult (18 to 64)',
         category: 'Admissions',
         price: 19.00,
         quantity: 0
     };
-    var admission_senior = {
+    admission.senior = {
         id: 109,
         name: 'Public Senior (65+)',
         category: 'Admissions',
         price: 14.00,
         quantity: 0
     };
-    var admission_youth = {
+    admission.youth = {
         id: 102,
         name: 'Public Youth (7 to 17)',
         category: 'Admissions',
         price: 10.00,
         quantity: 0
     };
-    var admission_child = {
+    admission.child = {
         id: 108,
         name: 'Public Child (6 and under)',
         category: 'Admissions',
         price: 0.00,
         quantity: 0
     };
-    admission.adult = admission_adult;
-    admission.senior = admission_senior;
-    admission.youth = admission_youth;
-    admission.child = admission_child;
 }
 
 function eventCatchers() {
