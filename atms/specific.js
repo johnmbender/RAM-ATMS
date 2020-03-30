@@ -386,10 +386,9 @@ function eventCatchers() {
 
 function pageLoad() {
     console.log('pageLoad() called');
-    switch (window.location.pathname) {
+    switch (window.location.pathname.toLowerCase()) {
         case '/ram':
         case '/ram/':
-        case '/ram/Default.aspx':
         case '/ram/default.aspx':
             console.log('looking at ' + window.location.pathname);
             if (params == null) {

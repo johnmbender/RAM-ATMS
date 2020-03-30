@@ -16,7 +16,7 @@ function retrieveURLparams() {
 	params = {},
 	match;
 	while(match = regex.exec(url)) {
-		params[match[1]] = match[2];
+		params[match[1].toLowerCase()] = match[2];
 	}
 	return $.isEmptyObject(params) ? null : params;
 }
