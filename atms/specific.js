@@ -568,59 +568,57 @@ function pageLoad() {
                     ]
                 });
                 console.log('gtag sent');
-            } else if (params.item != null) { // JOVI
+            } else if (params.item != null) {
                 // mammoth pass selected for viewing
+                console.log('viewing Mammoth Pass:');
                 var item = parseInt(params.item);
-                var item_name = 'undetermined';
-                var item_category = 'undetermined';
-                var item_price = null;
+                var viewed_item;
+                viewed_item.name = 'undetermined';
+                viewed_item.category = 'undetermined';
+                viewed_item.price = null;
                 
                 switch (item) {
                     case 16:
-                        item_name = 'Adult Mammoth Pass';
-                        item_category = 'Annual Pass';
-                        item_price = 35.00;
+                        viewed_item.name = 'Adult Mammoth Pass';
+                        viewed_item.category = 'Annual Pass';
+                        viewed_item.price = 35.00;
                         break;
                     case 17:
-                        item_name = 'Senior Mammoth Pass';
-                        item_category = 'Annual Pass';
-                        item_price = 30.00;
+                        viewed_item.name = 'Senior Mammoth Pass';
+                        viewed_item.category = 'Annual Pass';
+                        viewed_item.price = 30.00;
                         break;
                     case 18:
-                        item_name = 'Youth Mammoth Pass';
-                        item_category = 'Annual Pass';
-                        item_price = 20.00;
+                        viewed_item.name = 'Youth Mammoth Pass';
+                        viewed_item.category = 'Annual Pass';
+                        viewed_item.price = 20.00;
                         break;
                     case 19:
-                        item_name = 'Child Mammoth Pass';
-                        item_category = 'Annual Pass';
-                        item_price = 0.00;
+                        viewed_item.name = 'Child Mammoth Pass';
+                        viewed_item.category = 'Annual Pass';
+                        viewed_item.price = 0.00;
                         break;
                     case 20:
-                        item_name = 'Family Mammoth Pass';
-                        item_category = 'Annual Pass';
-                        item_price = 70.00;
+                        viewed_item.name = 'Family Mammoth Pass';
+                        viewed_item.category = 'Annual Pass';
+                        viewed_item.price = 70.00;
                         break;
                     case 203:
-                        item_name = 'Gift Mammoth Pass';
-                        item_category = 'Annual Pass';
+                        viewed_item.name = 'Gift Mammoth Pass';
+                        viewed_item.category = 'Annual Pass';
                         break;
                     default:
                         console.log('No item value?');
                         return;
                 }
 
+                console.log('posting:');
+                console.log(viewed_item);
                 // post to Analytics
                 gtag('event', 'view_item', {
-                    'items' : [
-                        {
-                            'id' : item,
-                            'name' : item_name,
-                            'category' : item_category,
-                            'price' : item_price
-                        }
-                    ]
+                    'items' : [viewed_item]
                 });
+                console.log('gtag sent');
             }
 
             break;
