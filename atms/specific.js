@@ -6,8 +6,8 @@ NOTE: while in Selection.aspx, I also saw SaleResponse.aspx, which seems AJAX-y
 */
 
 // store Mammoth Pass and Admission info in global vars
-var mammoth = [];
-var admission = [];
+var mammoth;
+var admission;
 
 // get any page parameters
 var params = retrieveURLparams();
@@ -22,7 +22,6 @@ eventCatchers();
 pageLoad();
 
 function loadItems() {
-    console.log('WTF?');
     // Mammoth Pass info
     var pass_adult = {
         id: 16,
