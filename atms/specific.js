@@ -331,11 +331,7 @@ function eventCatchers() {
         event.preventDefault();
         console.log('removing an item from cart');
         // remove item from cart
-        var parentRow = $(this).parent('tr');
-        console.log('clicked:');
-        console.log($(this));
-        console.log('parent is: ');
-        console.log(parentRow);
+        var parentRow = $(this).closest('tr');
         var item_type = $(parentRow).find('td.CartItem.first p strong').text().trim();
         var item_name = $(parentRow).find('td.CartType').text().trim();
         var item_quantity = parseInt($(parentRow).find('td.CartQuantity').text().trim().replace('$',''));
