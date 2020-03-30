@@ -385,11 +385,14 @@ function eventCatchers() {
 }
 
 function pageLoad() {
+    console.log('pageLoad() called');
     switch (window.location.pathname) {
         case '/ram':
         case '/ram/':
         case '/ram/Default.aspx':
+            console.log('looking at ' + window.location.pathname);
             if (params == null) {
+                console.log('no params');
                 // viewing all items
                 gtag('event', 'view_item_list', {
                     'items' : [
@@ -442,13 +445,16 @@ function pageLoad() {
                         }
                     ]
                 });
+                console.log('gtag sent');
             } else if (params.tagId != null) {
                 console.table(params);
                 // viewing a specific category of items
                 var tagId = parseInt(params.tagId);
+                console.log('tagId: ' + tagId);
                 switch (tagId) {
                     case 1:
                         // admissions
+                        console.log('admissions');
                         gtag('event', 'view_item_list', {
                             'items' : [{
                                 'id' : 1,
@@ -456,9 +462,11 @@ function pageLoad() {
                                 'category' : 'Admissions'
                             }]
                         });
+                        console.log('gtag sent');
                         break;
                     case 2:
                         // learning (programs?)
+                        console.log('learning');
                         gtag('event', 'view_item_list', {
                             'items' : [{
                                 'id': 2,
@@ -466,9 +474,11 @@ function pageLoad() {
                                 'category' : 'Learning'
                             }]
                         });
+                        console.log('gtag sent');
                         break;
                     case 3:
                         // annual pass
+                        console.log('annual pass');
                         gtag('event', 'view_item_list', {
                             'items' : [
                                 {
@@ -514,6 +524,7 @@ function pageLoad() {
                                 }
                             ]
                         });
+                        console.log('gtag sent');
                         break;
                     default:
                         // no action
