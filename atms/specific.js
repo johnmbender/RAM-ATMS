@@ -22,6 +22,7 @@ eventCatchers();
 pageLoad();
 
 function loadItems() {
+    console.log('WTF?');
     // Mammoth Pass info
     var pass_adult = {
         id: 16,
@@ -108,6 +109,8 @@ function eventCatchers() {
     });
 
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
+        event.preventDefault();
+        console.table(admission);   
         console.log('Continue button pressed');
         // check what's going into the cart
         if (params == null) {
