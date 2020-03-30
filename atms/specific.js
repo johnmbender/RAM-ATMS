@@ -108,10 +108,12 @@ function eventCatchers() {
     });
 
     $('input#AddToOrder.PrimaryAction').on('click', function(event) {
+        console.log('Continue button pressed');
         // check what's going into the cart
         if (params == null) {
             return true;
         } else if (params.sch != null) {
+            console.log('adding admission item(s) to cart');
             // viewing the admissions calendar
             var adults = parseInt($('#pricing_101\\:12\\:_').val());
             var seniors = parseInt($('#pricing_109\\:12\\:_').val());
@@ -149,6 +151,10 @@ function eventCatchers() {
                 return;
             }
 
+            console.log('added:');
+            console.table(items);
+            var cont = confirm('continue?');
+            
             gtag('event', 'add_to_cart', {
                 'items' : items
             });
