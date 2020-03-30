@@ -386,11 +386,12 @@ function eventCatchers() {
 
 function pageLoad() {
     console.log('pageLoad() called');
-    switch (window.location.pathname.toLowerCase()) {
+    var pathname = window.location.pathname.toLowerCase();
+    switch (pathname) {
         case '/ram':
         case '/ram/':
         case '/ram/default.aspx':
-            console.log('looking at ' + window.location.pathname);
+            console.log('looking at ' + pathname);
             if (params == null || (params != null) && params.tagid != null && parseInt(params.tagid) == 0) {
                 console.log('no params, or all items');
                 // viewing all items
