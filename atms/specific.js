@@ -532,7 +532,7 @@ function pageLoad() {
                 }
             }
             break;
-        case '/ram/DateSelection.aspx':
+        case '/ram/dateselection.aspx':
             console.log('dateSelection page for admissions');
             gtag('event', 'view_item', {
                 'items' : [
@@ -547,7 +547,7 @@ function pageLoad() {
             // user is checking calendar for dates for general admission
             // we don't need to track anything as there's no intent yet
             break;
-        case '/ram/Selection.aspx':
+        case '/ram/selection.aspx':
             if (params != null) console.table(params);
 
             // user has selected a date or chosen a mammoth pass
@@ -621,22 +621,22 @@ function pageLoad() {
             }
 
             break;
-        case '/ram/OrderSummary.aspx':
+        case '/ram/ordersummary.aspx':
             // user is viewing cart
             
             break;
-        case '/ram/Login.aspx':
+        case '/ram/login.aspx':
             // user needs to Login or continue as Guest
             
             break;
-        case '/ram/OrderContact.aspx':
+        case '/ram/ordercontact.aspx':
             // user is using the Guest checkout option
             // ...?
             break;
-        case '/ram/OrderRegistrants.aspx':
+        case '/ram/orderregistrants.aspx':
             // user is entering names on tickets (not using for now)
             break;
-        case '/ram/OrderCheckout.aspx':
+        case '/ram/ordercheckout.aspx':
             // reviewing cart after logging in; last stop before beanstream
             // gather cart info
             var items = [];
@@ -694,7 +694,7 @@ function pageLoad() {
                 'value' : totalCartValue
             });
             break;
-        case '/ram/OrderResponse.aspx':
+        case '/ram/orderresponse.aspx':
             // I dunno, man... need to do a real sale
 
             break;
