@@ -327,9 +327,8 @@ function eventCatchers() {
         return true;
     });
 
+    // handle items being removed from cart
     $('input[title="Remove"]').on('click', function(event) {
-        event.preventDefault();
-        console.log('removing an item from cart');
         // remove item from cart
         var parentRow = $(this).closest('tr');
         var item_type = $(parentRow).find('td.CartItem.first p strong').text().trim();
@@ -366,14 +365,16 @@ function eventCatchers() {
             'quantity' : item_quantity
         };
 
-        console.log('removing:');
-        console.table(removeItem);
-
         gtag('event', 'remove_from_cart', {
             'items' : [removeItem]
         });
 
         return true;
+    });
+
+    // handle submit cart to shipping/login
+    $('input[name="SelectShipping"]').on('click', function(event) {
+        // ?
     });
 }
 
@@ -616,15 +617,28 @@ function pageLoad() {
 
             break;
         case '/ram/ordersummary.aspx':
-            // user is viewing cart
+            // user is viewing cart, here begins checkout
+            var gtagObject = calculateCart();
+            if (gtagObject.items.length > 0) {
+                // value CAN be 0, if there's only a child's admission or pass, for example
+                gtag('event', 'begin_checkout', gtagObject);    
+            }
             break;
         case '/ram/login.aspx':
             // user needs to Login or continue as Guest
-            
+            // nothing really tracked here as we have no intent yet
             break;
         case '/ram/ordercontact.aspx':
             // user is using the Guest checkout option
-            // ...?
+            // form is presented but, yet again, no true intent yet
+            // add a get variable to the form to track for success prior to going to checkout
+            if (params != null && params.beetlejuice != null) {
+                event.preventDefault();
+                confirm('I got beetlejuice!');
+            } else {
+                console.log('adding beetlejuice to form');
+                $('form').prop('action', '?beetlejuice=true');
+            }
             break;
         case '/ram/orderregistrants.aspx':
             // user is entering names on tickets (not using for now)
@@ -632,64 +646,69 @@ function pageLoad() {
         case '/ram/ordercheckout.aspx':
             // reviewing cart after logging in; last stop before beanstream
             // gather cart info
-            var items = [];
-            var totalCartValue = 0;
+            var gtagObject = calculateCart();
 
-            $.each($('#ShoppingCart tbody tr'), function(i, item) {
-                var item_category = $(item).first('.CartItem strong').text();
-                var item_name = $(item).first('.CartType span em').text();
-                var item_id = null;
-
-                if (item_category == 'Admission') {
-                    item_category = 'Admissions'; // odd inconsistency on ATMS
-                    if (item_name == admission.adult.name) {
-                        item_id = admission.adult.id;
-                    } else if (item_name == admission.senior) {
-                        item_id = admission.senior.id;
-                    } else if (item_name == admission.youth) {
-                        item_id = admission.youth.id;
-                    } else if (item_name == admission.child) {
-                        item_id = admission.child.id;
-                    }
-                } else if (item_category == 'MAMMOTH PASS?') {
-                    // NEED TO COMPLETE
-                } else if (item_category == 'SOME OTHER?') {
-                    // NEED TO COMPLETE?
-                } else {
-                    // unknown category, or category couldn't be retrieved
-                    return true;
-                }
-
-                if (item_id == null) {
-                    return true;
-                }
-
-                var item_quantity = parseInt($(item).first('.CartQuantity').text().replace('$',''));
-                var item_price = parseInt($(item).first('.CartPrice').text().replace('$',''));
-                var item_total = parseInt($(item).first('.CartTotal').text().replace('$',''));
-                
-                items.push({
-                    'id' : item_id,
-                    'category' : item_category,
-                    'name' : item_name,
-                    'price' : item_price,
-                    'quantity' : item_quantity
-                });
-                totalCartValue += item_price * item_quantity;
-            });
-
-            if (items.length == 0) {
-                return true;
+            if (gtagObject.items.length > 0) {
+                // value CAN be 0, if there's only a child's admission or pass, for example
+                // add checkout step, which we will assume is 2 (JOVI)
+                gtagObject.checkout_step = 2;
+                gtag('event', 'checkout_progress', gtagObject);    
             }
 
-            gtag('event', 'begin_checkout', {
-                'items' : items,
-                'value' : totalCartValue
-            });
             break;
         case '/ram/orderresponse.aspx':
             // I dunno, man... need to do a real sale
 
             break;
     }
+}
+
+function calculateCart() {
+    var gtagObject = {};
+    var items = [];
+    var totalCartValue = 0;
+
+    $.each($('#ShoppingCart tbody tr'), function(i, item) {
+        var item_category = $(item).first('.CartItem strong').text().trim();
+        var item_name = $(item).first('.CartType span em').text().trim();
+        var item_id = null;
+
+        if (item_category == 'Admission') {
+            item_category = 'Admissions'; // odd inconsistency on ATMS
+            if (item_name == admission.adult.name) {
+                item_id = admission.adult.id;
+            } else if (item_name == admission.senior) {
+                item_id = admission.senior.id;
+            } else if (item_name == admission.youth) {
+                item_id = admission.youth.id;
+            } else if (item_name == admission.child) {
+                item_id = admission.child.id;
+            }
+        } else if (item_category == 'MAMMOTH PASS?') {
+            // NEED TO COMPLETE JOVI
+        } else if (item_category == 'SOME OTHER?') {
+            // NEED TO COMPLETE? JOVI
+        } else {
+            // unknown category, or category couldn't be retrieved
+        }
+
+        if (item_id != null) {
+            var item_quantity = parseInt($(item).first('.CartQuantity').text().trim().replace('$',''));
+            var item_price = parseInt($(item).first('.CartPrice').text().trim().replace('$',''));
+            
+            items.push({
+                'id' : item_id,
+                'category' : item_category,
+                'name' : item_name,
+                'price' : item_price,
+                'quantity' : item_quantity
+            });
+            totalCartValue += item_price * item_quantity;
+        }
+    });
+
+    gtagObject.value = totalCartValue;
+    gtagObject.items = items;
+
+    return gtagObject;
 }
