@@ -712,6 +712,27 @@ function pageLoad() {
             // I dunno, man... need to do a real sale
 
             break;
+        case '/ram/ordercheckoutresponse.aspx':
+            // I know this works as a decline, but will have to check on success
+            if (params != null & params.trnApproved != null) {
+                // trnApproved == 0 on decline
+                // should also have a trnAmount either way, but
+                // my first test was a malformed URL, so re-check
+                if (params.trnApproved == false) {
+                    // declined... what do we do here?
+                } else if (params.trnApproved == true) {
+                    // approved, send purchase complete gtag
+                    // purchase	transaction_id, value, currency, tax, shipping, items, coupon
+                    var purchase_value = params.trnAmount != null ? params.trnAmount : null;
+                    var purchase_id = params.trnId != null ? params.trnId : null;
+                    // https://atms.alberta.ca/ram/OrderCheckoutResponse.aspx?trnApproved=0&trnId=&messageId=804&messageText=Declined+%2D+Entered+Information+Cannot+Be+Authenticated&authCode=&responseType=T&trnAmount=&trnDate=3%2F31%2F2020+3%3A57%3A16+PM&trnOrderNumber=231020&trnLanguage=eng&trnCustomerName=&trnEmailAddress=&trnPhoneNumber=&avsProcessed=0&avsId=0&avsResult=0&avsAddrMatch=0&avsPostalMatch=0&avsMessage=Address+Verification+not+performed+for+this+transaction%2E&cardType=&trnType=&paymentMethod=&riskScore=0&ref1=842f239a%2D8deb%2D4cbc%2D9706%2D0f9a3aac273d&ref2=&ref3=&ref4=&ref5=&hashValue=f84cab16660e8085cd28b913671c54e2d1feacd3
+                    gtag('event', 'purchase', {
+                        'transaction_id' : purchase_id,
+                        'value' : purchase_value
+                    });
+                }
+            }
+            break;
     }
 }
 
