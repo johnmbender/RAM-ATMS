@@ -11,8 +11,8 @@ function eventCatchers() {
 }
 
 function pageLoad() {
-    // hard data lives here
-    switch (window.location.pathname) {
+    var pathname = window.location.pathname.toLowerCase();
+    switch (pathname) {
         case '/scripts/payment/payment.asp':
             // ref1 is our key for confirmation pointing to ATMS' "order" variable
             // trnAmount is the total dollar value processing
@@ -27,7 +27,7 @@ function pageLoad() {
             cartValue = params.trnAmount;
             gtag('event', 'checkout_progress', {
                 'value' : cartValue,
-                'checkout_step' : 2
+                'checkout_step' : 3
             });
             break;
     }

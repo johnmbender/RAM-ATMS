@@ -376,10 +376,62 @@ function eventCatchers() {
     $('input[name="SelectShipping"]').on('click', function(event) {
         // ?
     });
+
+    // handle guest registration form, and assume it was successful :/
+    $('input[name="SaveGuest"]').on('click', function(event) {
+        // we can guess if the form was filled out correctly, at least
+        if (checkInfoForm()) {
+            // submit assumed guest login
+            gtag('event', 'login', {
+                'method' : 'guest'
+            });
+        }
+    });
+
+    $('input#LogIn').on('click', function(event) {
+        // check to see if an email and password exists, and consider it a login :/
+    });
+}
+
+function checkInfoForm(password_check) {
+    var email1 = $('#EmailAddress').val().trim();
+    var email2 = $('#EmailAddress').val().trim();
+    var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var firstname = $('#FirstName').val().trim();
+    var lastname = $('#LastName').val().trim();
+    var phone = $('#PhoneNumber').val().trim().replace(/[^\d]/g, '');
+    var address = $('#AddressLine1').val().trim();
+    var city = $('#AddressCity').val().trim();
+    var postal = $('#AddressPostalCode').val().trim();
+    var postalRegex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+    var province = $('#AddressProvinceSelect').val();
+
+    if (password_check) {
+        var password1 = $('#Password').val().trim();
+        var password2 = $('#ConfirmPassword').val().trim();
+
+        if (password1.length == 0 ||
+            password1 != password2) {
+            // MORE CHECKS HERE FROM BRANDON
+            return false;
+        }
+    }
+
+    if (email1.length > 0 && emailRegex.test(email1.toLowerCase()) && email1 == email2 &&
+        firstname.length > 0 && lastname.length > 0 &&
+        phone.length > 6 && phone.length < 11 &&
+        address.length > 0 && city.length > 0 &&
+        postalRegex.test(postal.toLowerCase()) &&
+        province.length > 0) {
+        // assumed success
+        return true;
+    } else {
+        // assumed failure
+        return false;
+    }
 }
 
 function pageLoad() {
-    console.log('pageLoad() called');
     var pathname = window.location.pathname.toLowerCase();
     switch (pathname) {
         case '/ram':
@@ -621,27 +673,27 @@ function pageLoad() {
             var gtagObject = calculateCart();
             if (gtagObject.items.length > 0) {
                 // value CAN be 0, if there's only a child's admission or pass, for example
-                gtag('event', 'begin_checkout', gtagObject);    
+                gtag('event', 'begin_checkout', gtagObject);
             }
             break;
         case '/ram/login.aspx':
-            // user needs to Login or continue as Guest
-            // nothing really tracked here as we have no intent yet
+            // if param action exists and is "verify" variable exists, user account is created
+            if (params != null && params.action != null && params.action == "verify") {
+                gtag('event', 'sign_up', {
+                    'method' : 'account'
+                });
+            }
             break;
         case '/ram/ordercontact.aspx':
-            // user is using the Guest checkout option
-            // form is presented but, yet again, no true intent yet
-            // add a get variable to the form to track for success prior to going to checkout
-            if (params != null && params.beetlejuice != null) {
-                event.preventDefault();
-                confirm('I got beetlejuice!');
-            } else {
-                console.log('adding beetlejuice to form');
-                $('form').prop('action', '?beetlejuice=true');
-            }
+            // Guest checkout option
+            // there isn't an obvious way to see if guest registration was complete,
+            // so we'll guess it was successful on the submit button (eventCatcher)
             break;
         case '/ram/orderregistrants.aspx':
             // user is entering names on tickets (not using for now)
+            break;
+        case '/ram/register.aspx':
+
             break;
         case '/ram/ordercheckout.aspx':
             // reviewing cart after logging in; last stop before beanstream
