@@ -47,12 +47,143 @@ switch (window.location.pathname.toLowerCase()) {
         break;
     case '/ram/selection.aspx':
         // viewing an item
+        var item_name = $('.EventInfo .EventInfoRight h2').text().trim();
+        var item_id = parseInt(params.item);
+        // check for public pricing or member pricing
+        // 
+        var item_price = parseInt($('.Price label').text().trim().replace('$',''));
+        var add_button = $('.ButtonArea #AddToOrder').on('click', function() {
+            var item_quantity = $('.Amount select').val();
 
+            if (item_quantity == 0) {
+                return false;
+            }
+
+            dataLayer.push({
+                'event': 'addToCart',
+                'ecommerce': {
+                    'currencyCode': 'CAD',
+                    'add': {
+                        'products': [
+                            {
+                                'name': item_name,
+                                'id': item_id,
+                                'price': item_price,
+                                'quantity': item_quantity
+                            }
+                        ]
+                    }
+                }
+            });
+            return true;
+        });
+
+        dataLayer.push({
+            'ecommerce': {
+                'currencyCode': 'CAD',
+                'detail': {
+                    'products': [
+                        {
+                            'name': item_name,
+                            'id': item_id,
+                            'price': item_price,
+                        }
+                    ]
+                }
+            }
+        });
         break;
 
     case '/ram/ordersummary.aspx':
         // viewing a cart
+        var cartItems = [];
 
+        // add items to array
+        $.each($('#ShoppingCart table tbody tr'), function(i, itemRow) {
+            var item_name = $(itemRow).find('.CartItem p strong').text().trim();
+            var item_quantity = parseInt($(itemRow).find('.CartQuantity').text().trim());
+            var item_price = parseInt($(itemRow).find('.CartPrice').text().trim().replace('$', ''));
+            var item_total = parseInt($(itemRow).find('.CartTotal').text().trim().replace('$', ''));
+
+            var cart_item = {
+                'name' : item_name,
+                'id' : item_id,
+                'price' : item_price,
+                'quantity' : item_quantity
+            };
+            cartItems.push(cart_item);
+
+            // add remove click tracking
+            $(itemRow).find('input[title="Remove"]').on('click', function() {
+                dataLayer.push({
+                    'event' : 'removeFromCart',
+                    'ecommerce' : {
+                        'remove' : {
+                            'products' : [ cart_item ]
+                        }
+                    }
+                });
+            });
+        });
+
+        // not sure we care about shipping costs?
+        var shipping_cost = parseInt($('#ShippingOptions .Price').text().trim().replace('$',''));
+
+        // could also get GST, but guessing that's not important
+
+        if (cartItems.length > 0) {
+            dataLayer.push({
+                'event': 'checkout',
+                'ecommerce': {
+                    'checkout': {
+                        'actionField': {
+                            'step': 1,
+                            'option': 'Order Summary'
+                        },
+                        'products': cartItems
+                    }
+                }
+            });
+        }
         break;
-    
+
+    case '/ram/ordercheckout.aspx':
+        // user is logged in, has a full cart
+        var cartItems = [];
+
+        // add items to array
+        $.each($('#ShoppingCart table tbody tr'), function(i, itemRow) {
+            var item_name = $(itemRow).find('.CartItem p strong').text().trim();
+            var item_quantity = parseInt($(itemRow).find('.CartQuantity').text().trim());
+            var item_price = parseInt($(itemRow).find('.CartPrice').text().trim().replace('$', ''));
+            var item_total = parseInt($(itemRow).find('.CartTotal').text().trim().replace('$', ''));
+
+            var cart_item = {
+                'name' : item_name,
+                'id' : item_id,
+                'price' : item_price,
+                'quantity' : item_quantity
+            };
+            cartItems.push(cart_item);
+        });
+
+        var cart_tax = parseInt($('.CartTax').eq(0).find('strong').text().trim().replace('$',''));
+        var cart_total = parseInt($('.CartFinalTotal strong').text().replace('$','').replace('CDN','').trim());
+        var cart_gst = parseInt($('.CartTax').eq(1).text().replace('GST Included: ','').replace('$','').trim());
+
+        if (cartItems.length > 0) {
+            dataLayer.push({
+                'event': 'checkout',
+                'ecommerce': {
+                    'checkout': {
+                        'actionField': {
+                            'step': 2,
+                            'option': 'Order Checkout'
+                        },
+                        'products': cartItems
+                    }
+                }
+            });
+        }
+        break;
 }
