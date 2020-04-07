@@ -12,7 +12,7 @@ switch (window.location.pathname.toLowerCase()) {
     case '/ram/':
     case '/ram/default.aspx':
         // item listings; if a tagId param exists, viewing a category
-        var category = 'ALL';
+        var category = null;
         if (vars.tagid != null) {
             category = $('h1').text().trim();
         }
@@ -36,9 +36,11 @@ switch (window.location.pathname.toLowerCase()) {
             var impression = {
                 'name' : item_name,
                 'id' : item_id,
-                'category' : category,
                 'position' : item_position
             };
+            if (category != null) {
+                impression.category = category;
+            }
             impressions.push(impression);
         });
 
