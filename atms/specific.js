@@ -1,8 +1,10 @@
 var vars = getUrlVars();
+var member = null;
 
 // hide public pricing if member is logged in
 if ($('#MemberPricing').length > 0) {
     $('#PublicPricing').closest('.Section').remove();
+    member = true;
 }
 
 switch (window.location.pathname.toLowerCase()) {
@@ -71,6 +73,10 @@ switch (window.location.pathname.toLowerCase()) {
                 new_product.variant = variant;
             }
 
+            if (member) {
+                new_product.coupon = 'member';
+            }
+
             products.push(new_product);
         }
 
@@ -104,6 +110,10 @@ switch (window.location.pathname.toLowerCase()) {
                     var variant = $(pricingBox).find('.Type').text().trim();
                     if (variant != 'Merchandise Cost') {
                         new_product.variant = variant;
+                    }
+
+                    if (member) {
+                        new_product.coupon = 'member';
                     }
 
                     products.push(new_product);
@@ -142,6 +152,9 @@ switch (window.location.pathname.toLowerCase()) {
                 'price' : item_price,
                 'quantity' : item_quantity
             };
+            if (member) {
+                cart_item.coupon = 'member';
+            }
             cartItems.push(cart_item);
 
             // add remove click tracking
@@ -197,6 +210,10 @@ switch (window.location.pathname.toLowerCase()) {
                 'price' : item_price,
                 'quantity' : item_quantity
             };
+
+            if (member) {
+                cart_item.coupon = 'member';
+            }
             cartItems.push(cart_item);
         });
 
@@ -243,6 +260,7 @@ switch (window.location.pathname.toLowerCase()) {
         //     'quantity': 1
         // }
         var products = [];
+        // DON'T forget member coupon
 
         if (products.length > 0) {
             dataLayer.push({
