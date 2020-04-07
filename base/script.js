@@ -9,18 +9,6 @@ reposition();
 // set nav as phat by default
 var nav = 'phat';
 
-// grab any existing page URL parameters and return them
-function retrieveURLparams() {
-	var regex = /[?&]([^=#]+)=([^&#]*)/g,
-	url = decodeURIComponent(window.location.href),
-	params = {},
-	match;
-	while(match = regex.exec(url)) {
-		params[match[1].toLowerCase()] = match[2];
-	}
-	return $.isEmptyObject(params) ? null : params;
-}
-
 // control the hamburger menu
 $('.fa-bars').click(function() {
 	$('.fa-bars').prop('aria-expanded', 'true');
