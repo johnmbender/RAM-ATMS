@@ -6,6 +6,7 @@ if (vars.errorMessage == null) {
     dataLayer.push({
         'event': 'checkout',
         'ecommerce': {
+            'currencyCode': 'CAD',
             'checkout': {
                 'actionField': {
                     'step': 3,

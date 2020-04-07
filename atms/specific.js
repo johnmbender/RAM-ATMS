@@ -110,29 +110,17 @@ switch (window.location.pathname.toLowerCase()) {
                 }
             }
 
-
-            var item_quantity = $('.Amount select').val();
-
-            if (item_quantity == 0) {
-                return false;
-            }
-
-            dataLayer.push({
-                'event': 'addToCart',
-                'ecommerce': {
-                    'currencyCode': 'CAD',
-                    'add': {
-                        'products': [
-                            {
-                                'name': item_name,
-                                'id': item_id,
-                                'price': item_price,
-                                'quantity': item_quantity
-                            }
-                        ]
+            if (added_products.length > 0) {
+                dataLayer.push({
+                    'event': 'addToCart',
+                    'ecommerce': {
+                        'currencyCode': 'CAD',
+                        'add': {
+                            'products': added_products
+                        }
                     }
-                }
-            });
+                });
+            }
             return true;
         });
         break;
@@ -161,6 +149,7 @@ switch (window.location.pathname.toLowerCase()) {
                 dataLayer.push({
                     'event' : 'removeFromCart',
                     'ecommerce' : {
+                        'currencyCode': 'CAD',
                         'remove' : {
                             'products' : [ cart_item ]
                         }
@@ -178,6 +167,7 @@ switch (window.location.pathname.toLowerCase()) {
             dataLayer.push({
                 'event': 'checkout',
                 'ecommerce': {
+                    'currencyCode': 'CAD',
                     'checkout': {
                         'actionField': {
                             'step': 1,
@@ -218,6 +208,7 @@ switch (window.location.pathname.toLowerCase()) {
             dataLayer.push({
                 'event': 'checkout',
                 'ecommerce': {
+                    'currencyCode': 'CAD',
                     'checkout': {
                         'actionField': {
                             'step': 2,
@@ -256,6 +247,7 @@ switch (window.location.pathname.toLowerCase()) {
         if (products.length > 0) {
             dataLayer.push({
                 'ecommerce': {
+                    'currencyCode': 'CAD',
                     'purchase': {
                         'actionField': {
                             'id': transaction_id,
