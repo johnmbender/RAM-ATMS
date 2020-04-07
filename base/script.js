@@ -4,9 +4,12 @@
  */
 
 // global function to get URL params for reference in the specific.js files
-function getUrlVars() {
+function getUrlVars(path) {
 	var vars = {};
-	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+	if (path == null) {
+		path = window.location.href;
+	}
+	var parts = path.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 		vars[key] = value;
 	});
 	return vars;
