@@ -27,7 +27,7 @@ switch (window.location.pathname.toLowerCase()) {
             // gather the id from the purchase button
             var href = $(item).find('a.PrimaryAction').prop('href');
             var params = getUrlVars(href);
-            var item_id = parseInt(vars.item);
+            var item_id = parseInt(params.item);
 
             // default to page 1 if there is no page variable
             var page = (vars.page == null) ? 1 : parseInt(vars.page);
@@ -57,7 +57,7 @@ switch (window.location.pathname.toLowerCase()) {
     case '/ram/selection.aspx':
         // viewing an item
         var item_name = $('.EventInfo .EventInfoRight h2').text().trim();
-        var item_id = parseInt(params.item);
+        var item_id = parseInt(vars.item);
 
         var pricingBox = ($('#MemberPricing').length > 0) ? $('#MemberPricing') : $('#PublicPricing');
         var products = [];
