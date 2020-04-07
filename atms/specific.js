@@ -1,6 +1,8 @@
 var vars = getUrlVars();
 
 switch (window.location.pathname.toLowerCase()) {
+    case '/ram':
+    case '/ram/':
     case '/ram/default.aspx':
         // item listings; if a tagId param exists, viewing a category
         var category = 'ALL';
