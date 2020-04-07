@@ -1,5 +1,6 @@
 var vars = getUrlVars();
 var amount = parseInt(vars.trnAmount);
+var orderNumber = parseInt(vars.trnOrderNumber);
 
 if (vars.errorMessage == null) {
     dataLayer.push({
