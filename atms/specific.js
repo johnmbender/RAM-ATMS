@@ -27,7 +27,7 @@ switch (window.location.pathname.toLowerCase()) {
             // gather the id from the purchase button
             var href = $(item).find('a.PrimaryAction').prop('href');
             var params = getUrlVars(href);
-            var item_id = parseInt(params.item);
+            var item_id = parseInt(vars.item);
 
             // default to page 1 if there is no page variable
             var page = (vars.page == null) ? 1 : parseInt(vars.page);
