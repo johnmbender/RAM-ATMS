@@ -1,5 +1,10 @@
 var vars = getUrlVars();
 
+// hide public pricing if member is logged in
+if ($('#MemberPricing').length > 0) {
+    $('#PublicPricing').remove();
+}
+
 switch (window.location.pathname.toLowerCase()) {
     case '/ram':
     case '/ram/':
@@ -49,10 +54,63 @@ switch (window.location.pathname.toLowerCase()) {
         // viewing an item
         var item_name = $('.EventInfo .EventInfoRight h2').text().trim();
         var item_id = parseInt(params.item);
-        // check for public pricing or member pricing
-        // 
-        var item_price = parseInt($('.Price label').text().trim().replace('$',''));
+
+        var pricingBox = ($('#MemberPricing').length > 0) ? $('#MemberPricing') : $('#PublicPricing');
+        var products = [];
+
+        for (var i = 0; i < $(pricingBox).find('.Type').length; i++) {
+            var new_product = {};
+            new_product.name = item_name;
+            new_product.id = item_id;
+
+            var item_price = parseInt($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$',''));
+            new_product.price = item_price;
+
+            var variant = $(pricingBox).find('.Type').text().trim();
+            if (variant != 'Merchandise Cost') {
+                new_product.variant = variant;
+            }
+
+            products.push(new_product);
+        }
+
+        if (products.length > 0) {
+            dataLayer.push({
+                'ecommerce': {
+                    'currencyCode': 'CAD',
+                    'detail': {
+                        'products': products
+                    }
+                }
+            });
+        }
+
         var add_button = $('.ButtonArea #AddToOrder').on('click', function() {
+            var added_products = [];
+
+            for (var i = 0; i < $(pricingBox).find('.Type').length; i++) {
+                var new_product = {};
+
+                var item_quantity = parseInt($(pricingBox).find('.Amount').eq(i).find('select').val());
+                // only add items to cart if item quantity isn't 0, duh
+                if (item_quantity > 0) {
+                    new_product.quantity = item_quantity;
+                    new_product.name = item_name;
+                    new_product.id = item_id;
+
+                    var item_price = parseInt($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$',''));
+                    new_product.price = item_price;
+
+                    var variant = $(pricingBox).find('.Type').text().trim();
+                    if (variant != 'Merchandise Cost') {
+                        new_product.variant = variant;
+                    }
+
+                    products.push(new_product);
+                }
+            }
+
+
             var item_quantity = $('.Amount select').val();
 
             if (item_quantity == 0) {
@@ -76,21 +134,6 @@ switch (window.location.pathname.toLowerCase()) {
                 }
             });
             return true;
-        });
-
-        dataLayer.push({
-            'ecommerce': {
-                'currencyCode': 'CAD',
-                'detail': {
-                    'products': [
-                        {
-                            'name': item_name,
-                            'id': item_id,
-                            'price': item_price,
-                        }
-                    ]
-                }
-            }
         });
         break;
 
@@ -186,4 +229,46 @@ switch (window.location.pathname.toLowerCase()) {
             });
         }
         break;
+    case '/ram/COMPLETED_URL':
+        // we need to get transaction_id
+        // which is available in beanstream's URL...
+        var transaction_id = null;
+
+        // calculate revenue ...?
+        // tax, shipping, total
+        var revenue = 0;
+
+        // calculate tax ...?
+        var tax = 0;
+
+        // calculate shipping ...?
+        var shipping = 0;
+
+        // get products ...?
+        // {
+        //     'name': 'Triblend Android T-Shirt',     // Name or ID is required.
+        //     'id': '12345',
+        //     'price': '15.25',
+        //     'quantity': 1
+        // }
+        var products = [];
+
+        if (products.length > 0) {
+            dataLayer.push({
+                'ecommerce': {
+                    'purchase': {
+                        'actionField': {
+                            'id': transaction_id,
+                            'affiliation': 'Online Store',
+                            'revenue': revenue,
+                            'tax': tax,
+                            'shipping': shipping
+                        },
+                        'products': products
+                    }
+                }
+            });
+        }
+        break;
+
 }
