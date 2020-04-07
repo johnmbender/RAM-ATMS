@@ -3,6 +3,15 @@
  # @base/script.js
  */
 
+// global function to get URL params for reference in the specific.js files
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+
 // reposition elements based on window size
 reposition();
 
