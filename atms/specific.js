@@ -67,7 +67,7 @@ switch (window.location.pathname.toLowerCase()) {
             new_product.name = item_name;
             new_product.id = item_id;
 
-            var item_price = parseInt($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$',''));
+            var item_price = parseFloat($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$','')).toFixed(2);
             new_product.price = item_price;
 
             var variant = $(pricingBox).find('.Type').eq(i).text().trim();
@@ -106,7 +106,7 @@ switch (window.location.pathname.toLowerCase()) {
                     new_product.name = item_name;
                     new_product.id = item_id;
 
-                    var item_price = parseInt($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$',''));
+                    var item_price = parseFloat($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$','')).toFixed(2);
                     new_product.price = item_price;
 
                     var variant = $(pricingBox).find('.Type').eq(i).text().trim();
@@ -145,8 +145,8 @@ switch (window.location.pathname.toLowerCase()) {
         $.each($('#ShoppingCart table tbody tr'), function(i, itemRow) {
             var item_name = $(itemRow).find('.CartItem p strong').text().trim();
             var item_quantity = parseInt($(itemRow).find('.CartQuantity').text().trim());
-            var item_price = parseInt($(itemRow).find('.CartPrice').text().trim().replace('$', ''));
-            var item_total = parseInt($(itemRow).find('.CartTotal').text().trim().replace('$', ''));
+            var item_price = parseFloat($(itemRow).find('.CartPrice').text().trim().replace('$', '')).toFixed(2);
+            var item_total = parseFloat($(itemRow).find('.CartTotal').text().trim().replace('$', '')).toFixed(2);
 
             var cart_item = {
                 'name' : item_name,
@@ -174,7 +174,7 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         // not sure we care about shipping costs?
-        var shipping_cost = parseInt($('#ShippingOptions .Price').text().trim().replace('$',''));
+        var shipping_cost = parseFloat($('#ShippingOptions .Price').text().trim().replace('$','')).toFixed(2);
 
         // could also get GST, but guessing that's not important
 
@@ -203,8 +203,8 @@ switch (window.location.pathname.toLowerCase()) {
         $.each($('#ShoppingCart table tbody tr'), function(i, itemRow) {
             var item_name = $(itemRow).find('.CartItem p strong').text().trim();
             var item_quantity = parseInt($(itemRow).find('.CartQuantity').text().trim());
-            var item_price = parseInt($(itemRow).find('.CartPrice').text().trim().replace('$', ''));
-            var item_total = parseInt($(itemRow).find('.CartTotal').text().trim().replace('$', ''));
+            var item_price = parseFloat($(itemRow).find('.CartPrice').text().trim().replace('$', '')).toFixed(2);
+            var item_total = parseFloat($(itemRow).find('.CartTotal').text().trim().replace('$', '')).toFixed(2);
 
             var cart_item = {
                 'name' : item_name,
@@ -219,9 +219,9 @@ switch (window.location.pathname.toLowerCase()) {
             cartItems.push(cart_item);
         });
 
-        var cart_tax = parseInt($('.CartTax').eq(0).find('strong').text().trim().replace('$',''));
-        var cart_total = parseInt($('.CartFinalTotal strong').text().replace('$','').replace('CDN','').trim());
-        var cart_gst = parseInt($('.CartTax').eq(1).text().replace('GST Included: ','').replace('$','').trim());
+        var cart_tax = parseFloat($('.CartTax').eq(0).find('strong').text().trim().replace('$','')).toFixed(2);
+        var cart_total = parseFloat($('.CartFinalTotal strong').text().replace('$','').replace('CDN','').trim()).toFixed(2);
+        var cart_gst = parseFloat($('.CartTax').eq(1).text().replace('GST Included: ','').replace('$','').trim()).toFixed(2);
 
         if (cartItems.length > 0) {
             dataLayer.push({
