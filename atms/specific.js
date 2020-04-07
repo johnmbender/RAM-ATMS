@@ -2,7 +2,7 @@ var vars = getUrlVars();
 
 // hide public pricing if member is logged in
 if ($('#MemberPricing').length > 0) {
-    $('#PublicPricing').remove();
+    $('#PublicPricing').closest('.Section').remove();
 }
 
 switch (window.location.pathname.toLowerCase()) {
