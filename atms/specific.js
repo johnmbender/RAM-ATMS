@@ -70,7 +70,7 @@ switch (window.location.pathname.toLowerCase()) {
             var item_price = parseInt($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$',''));
             new_product.price = item_price;
 
-            var variant = $(pricingBox).find('.Type').text().trim();
+            var variant = $(pricingBox).find('.Type').eq(i).text().trim();
             if (variant != 'Merchandise Cost') {
                 new_product.variant = variant;
             }
@@ -109,7 +109,7 @@ switch (window.location.pathname.toLowerCase()) {
                     var item_price = parseInt($(pricingBox).find('.Price').eq(i).find('label').text().trim().replace('$',''));
                     new_product.price = item_price;
 
-                    var variant = $(pricingBox).find('.Type').text().trim();
+                    var variant = $(pricingBox).find('.Type').eq(i).text().trim();
                     if (variant != 'Merchandise Cost') {
                         new_product.variant = variant;
                     }
