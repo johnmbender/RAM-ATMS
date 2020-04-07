@@ -255,3 +255,8 @@ b {
 input[name="ordEmailAddress"] {
 	margin-bottom: 12px;
 }
+
+.EventInfoRight .ItemDetails .Description img {
+	max-width: 100%;
+	max-height: 100%;
+}
