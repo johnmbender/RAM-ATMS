@@ -254,47 +254,80 @@ switch (window.location.pathname.toLowerCase()) {
             });
         }
         break;
-    case '/ram/COMPLETED_URL':
+    case '/ram/OrderResponse.aspx':
         // we need to get transaction_id
-        // which is available in beanstream's URL...
         var transaction_id = null;
+        var alert = $('.Alert');
+        // loop the p tags, to make sure we get the right thing
+        $.each($(alert).find('p strong'), function(i, p) {
+            var statement = $(p).text().trim();
+            if (statement.indexOf('Your confirmation number is ') != -1) {
+                statement = statement.replace('Your confirmation number is ', '');
+                transaction_id = parseInt(statement);
+                return false;
+            }
+        });
 
-        // calculate revenue ...?
-        // tax, shipping, total
-        var revenue = 0;
+        if (transaction_id != null) {
+            // tax, shipping, total
+            var revenue = parseFloat($('.CartFinalTotal strong').text().replace('CDN', '').replace('$','').trim()).toFixed(2);
 
-        // calculate tax ...?
-        var tax = 0;
-
-        // calculate shipping ...?
-        var shipping = 0;
-
-        // get products ...?
-        // {
-        //     'name': 'Triblend Android T-Shirt',     // Name or ID is required.
-        //     'id': '12345',
-        //     'price': '15.25',
-        //     'quantity': 1
-        // }
-        var products = [];
-        // DON'T forget member coupon
-
-        if (products.length > 0) {
-            dataLayer.push({
-                'ecommerce': {
-                    'currencyCode': 'CAD',
-                    'purchase': {
-                        'actionField': {
-                            'id': transaction_id,
-                            'affiliation': 'Online Store',
-                            'revenue': revenue,
-                            'tax': tax,
-                            'shipping': shipping
-                        },
-                        'products': products
-                    }
+            // find shipping and tax (both held under a div.CartTax)
+            var shipping = 0;
+            var tax = 0;
+            $.each($('.CartTax'), function(i, ele) {
+                var text = $(ele).text();
+                if (text.indexOf('Shipping') >= 0) {
+                    // shipping here
+                    shipping = parseFloat($(ele).find('strong').text().replace('$','')).toFixed(2);
+                } else if (text.indexOf('GST') >= 0) {
+                    // tax here
+                    tax = parseFloat(text.replace('GST Included: $').trim()).toFixed(2);
                 }
             });
+
+            var purchased_products = [];
+            $.each($('#ShoppingCart table tbody tr'), function(i, product) {
+                var item_name = $(product).find('.CartItem p strong').text().trim();
+                var item_variant = $(product).find('.CartType').text().trim();
+                var item_quantity = parseInt($(product).find('.CartQuantity').text().trim());
+                var item_price = parseFloat($(product).find('.CartPrice').text().trim().replace('$','')).toFixed(2);
+                var item_total = parseFloat($(product).find('.CartTotal').text().trim().replace('$','')).toFixed(2);
+
+                var purchased_product = {
+                    'name' : item_name,
+                    'price' : item_price,
+                    'quantity' : item_quantity,
+                };
+
+                if (item_variant != null && item_variant.length > 0) {
+                    purchased_product.variant = item_variant;
+                }
+
+                purchased_products.push(purchased_product);
+            });
+
+            // DON'T forget member coupon by looking for that option under login area
+            // ALSO: adjust by 1.8% the total value of combined items, not including tax and such
+            // if peeps want that and set that as revenue
+
+            if (purchased_products.length > 0) {
+                dataLayer.push({
+                    'ecommerce': {
+                        'currencyCode': 'CAD',
+                        'purchase': {
+                            'actionField': {
+                                'id': transaction_id,
+                                'affiliation': 'Online Store',
+                                'revenue': revenue,
+                                'tax': tax,
+                                'shipping': shipping
+                            },
+                            'products': purchased_products
+                        }
+                    }
+                });
+            }
         }
         break;
 }
