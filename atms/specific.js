@@ -97,14 +97,22 @@ if (window.location.hostname == 'atms.alberta.ca') {
 
             var add_button = $('.ButtonArea #AddToOrder').on('click', function(event) {
                 event.preventDefault();
+                console.log('Add To Order pressed');
                 var thisAddButton = $(this);
+                console.log('button: ');
+                console.log(thisAddButton);
                 var added_products = [];
 
-                for (var i = 0; i < $(pricingBox).find('.Type').length; i++) {
+                var variants = $(pricingBox).find('.Type').length;
+                console.log('variants: ' + variants);
+
+                for (var i = 0; i < variants; i++) {
                     var new_product = {};
 
                     var item_quantity = parseInt($(pricingBox).find('.Amount').eq(i).find('select').val());
+                    
                     // only add items to cart if item quantity isn't 0, duh
+                    console.log('variant ' + i + ' has ' + item_quantity + ' quantity');
                     if (item_quantity > 0) {
                         new_product.quantity = item_quantity;
                         new_product.name = item_name;
@@ -122,12 +130,17 @@ if (window.location.hostname == 'atms.alberta.ca') {
                             new_product.coupon = 'member';
                         }
 
-                        products.push(new_product);
+                        console.log('adding new product with 1 or more quantity:');
+                        console.table(new_product);
+
+                        added_products.push(new_product);
                     }
                 }
 
+                console.log('added products:');
+                console.table(added_products);
+
                 if (added_products.length > 0) {
-                    console.log('products added...');
                     dataLayer.push({
                         'event': 'addToCart',
                         'ecommerce': {
@@ -141,7 +154,6 @@ if (window.location.hostname == 'atms.alberta.ca') {
                         }
                     });
                 } else {
-                    console.log('no added products?');
                     $(thisAddButton).unbind('click').click();
                 }
             });
