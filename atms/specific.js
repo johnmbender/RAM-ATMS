@@ -125,6 +125,7 @@ switch (window.location.pathname.toLowerCase()) {
             }
 
             if (added_products.length > 0) {
+                console.log('products added...');
                 dataLayer.push({
                     'event': 'addToCart',
                     'ecommerce': {
@@ -137,8 +138,9 @@ switch (window.location.pathname.toLowerCase()) {
                         $(thisAddButton).unbind('click').click();
                     }
                 });
+            } else {
+                $(thisAddButton).unbind('click').click();
             }
-            return true;
         });
         break;
 
