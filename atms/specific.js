@@ -7,6 +7,9 @@ if ($('#MemberPricing').length > 0) {
     member = true;
 }
 
+// window.dataLayer = window.dataLayer || [];
+// and possibly 'event' : 'purchase / ecommerce / ?'
+
 switch (window.location.pathname.toLowerCase()) {
     case '/ram':
     case '/ram/':
@@ -46,6 +49,7 @@ switch (window.location.pathname.toLowerCase()) {
 
         if (impressions.length > 0) {
             dataLayer.push({
+                'event' : 'ecommerce',
                 'ecommerce' : {
                     'currencyCode' : 'CAD',
                     'impressions' : impressions
@@ -84,6 +88,7 @@ switch (window.location.pathname.toLowerCase()) {
 
         if (products.length > 0) {
             dataLayer.push({
+                'event' : 'ecommerce',
                 'ecommerce': {
                     'currencyCode': 'CAD',
                     'detail': {
@@ -313,6 +318,7 @@ switch (window.location.pathname.toLowerCase()) {
 
             if (purchased_products.length > 0) {
                 dataLayer.push({
+                    'event' : 'purchase',
                     'ecommerce': {
                         'currencyCode': 'CAD',
                         'purchase': {
