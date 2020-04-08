@@ -97,14 +97,10 @@ if (window.location.hostname == 'atms.alberta.ca') {
 
             var add_button = $('.ButtonArea #AddToOrder').on('click', function(event) {
                 event.preventDefault();
-                console.log('Add To Order pressed');
                 var thisAddButton = $(this);
-                console.log('button: ');
-                console.log(thisAddButton);
                 var added_products = [];
 
                 var variants = $(pricingBox).find('.Type').length;
-                console.log('variants: ' + variants);
 
                 for (var i = 0; i < variants; i++) {
                     var new_product = {};
@@ -112,7 +108,6 @@ if (window.location.hostname == 'atms.alberta.ca') {
                     var item_quantity = parseInt($(pricingBox).find('.Amount').eq(i).find('select').val());
                     
                     // only add items to cart if item quantity isn't 0, duh
-                    console.log('variant ' + i + ' has ' + item_quantity + ' quantity');
                     if (item_quantity > 0) {
                         new_product.quantity = item_quantity;
                         new_product.name = item_name;
@@ -130,15 +125,9 @@ if (window.location.hostname == 'atms.alberta.ca') {
                             new_product.coupon = 'member';
                         }
 
-                        console.log('adding new product with 1 or more quantity:');
-                        console.table(new_product);
-
                         added_products.push(new_product);
                     }
                 }
-
-                console.log('added products:');
-                console.table(added_products);
 
                 if (added_products.length > 0) {
                     dataLayer.push({
