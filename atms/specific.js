@@ -139,6 +139,7 @@ switch (window.location.pathname.toLowerCase()) {
                     }
                 });
             } else {
+                console.log('no added products?');
                 $(thisAddButton).unbind('click').click();
             }
         });
