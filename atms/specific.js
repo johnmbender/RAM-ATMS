@@ -48,9 +48,8 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         if (impressions.length > 0) {
-            window.dataLayer = window.dataLayer || [];
             dataLayer.push({
-                'event' : 'ecommerce',
+                'event' : 'impressions',
                 'ecommerce' : {
                     'currencyCode' : 'CAD',
                     'impressions' : impressions
@@ -89,7 +88,7 @@ switch (window.location.pathname.toLowerCase()) {
 
         if (products.length > 0) {
             dataLayer.push({
-                'event' : 'ecommerce',
+                'event' : 'detail',
                 'ecommerce': {
                     'currencyCode': 'CAD',
                     'detail': {
