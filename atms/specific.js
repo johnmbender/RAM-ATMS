@@ -324,6 +324,13 @@ switch (window.location.pathname.toLowerCase()) {
                                 'shipping': shipping
                             },
                             'products': purchased_products
+                        },
+                        'checkout': {
+                            'actionField': {
+                                'step': 4,
+                                'option': 'Purchase Complete'
+                            },
+                            'products': purchased_products
                         }
                     }
                 });
