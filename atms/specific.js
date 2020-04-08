@@ -48,6 +48,7 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         if (impressions.length > 0) {
+            window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event' : 'ecommerce',
                 'ecommerce' : {
