@@ -93,7 +93,9 @@ switch (window.location.pathname.toLowerCase()) {
             });
         }
 
-        var add_button = $('.ButtonArea #AddToOrder').on('click', function() {
+        var add_button = $('.ButtonArea #AddToOrder').on('click', function(event) {
+            event.preventDefault();
+            var thisAddButton = $(this);
             var added_products = [];
 
             for (var i = 0; i < $(pricingBox).find('.Type').length; i++) {
@@ -130,6 +132,9 @@ switch (window.location.pathname.toLowerCase()) {
                         'add': {
                             'products': added_products
                         }
+                    },
+                    'eventCallback': function() {
+                        $(thisAddButton).unbind('click').click();
                     }
                 });
             }
@@ -160,7 +165,10 @@ switch (window.location.pathname.toLowerCase()) {
             cartItems.push(cart_item);
 
             // add remove click tracking
-            $(itemRow).find('input[title="Remove"]').on('click', function() {
+            $(itemRow).find('input[title="Remove"]').on('click', function(event) {
+                event.preventDefault();
+                var thisRemoveButton = $(this);
+
                 dataLayer.push({
                     'event' : 'removeFromCart',
                     'ecommerce' : {
@@ -168,6 +176,9 @@ switch (window.location.pathname.toLowerCase()) {
                         'remove' : {
                             'products' : [ cart_item ]
                         }
+                    },
+                    'eventCallback': function() {
+                        $(thisRemoveButton).unbind('click').click();
                     }
                 });
             });
