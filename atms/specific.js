@@ -7,6 +7,13 @@ if ($('#MemberPricing').length > 0) {
     member = true;
 }
 
+if (window.location.hostname == 'atmsuat.alberta.ca') {
+    console.log('working on UAT');
+    return;
+}
+
+console.log('working on prod');
+
 switch (window.location.pathname.toLowerCase()) {
     case '/ram':
     case '/ram/':
