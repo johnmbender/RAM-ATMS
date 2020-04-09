@@ -3,6 +3,7 @@ var amount = parseInt(vars.trnAmount);
 var orderNumber = vars.trnOrderNumber;
 
 if (vars.errorMessage == null) {
+    dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'checkout',
         'ecommerce': {
