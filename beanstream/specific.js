@@ -9,7 +9,7 @@ if (vars.errorMessage == null) {
             'currencyCode': 'CAD',
             'checkout': {
                 'actionField': {
-                    'step': 3,
+                    'step': 2,
                     'option': 'Payment Information'
                 }
             }
