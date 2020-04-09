@@ -3,7 +3,7 @@ var member = null;
 
 // hide public pricing if member is logged in
 if ($('#MemberPricing').length > 0) {
-    $('#PublicPricing').closest('.Section').remove();
+    $('#PublicPricing').closest('.Section').remove();   
     member = true;
 }
 
@@ -357,13 +357,6 @@ switch (window.location.pathname.toLowerCase()) {
                                 'revenue': revenue,
                                 'tax': tax,
                                 'shipping': shipping
-                            },
-                            'products': purchased_products
-                        },
-                        'checkout': {
-                            'actionField': {
-                                'step': 3,
-                                'option': 'Purchase Complete'
                             },
                             'products': purchased_products
                         }
