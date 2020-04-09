@@ -363,7 +363,7 @@ switch (window.location.pathname.toLowerCase()) {
                         },
                         'checkout': {
                             'actionField': {
-                                'step': 4,
+                                'step': 3,
                                 'option': 'Purchase Complete'
                             },
                             'products': purchased_products
