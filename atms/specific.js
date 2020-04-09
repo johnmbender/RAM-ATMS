@@ -289,6 +289,7 @@ switch (window.location.pathname.toLowerCase()) {
         }
         break;
     case '/ram/OrderResponse.aspx':
+        console.log('in order response');
         // we need to get transaction_id
         var transaction_id = null;
         // loop the p tags, to make sure we get the right thing
@@ -301,10 +302,13 @@ switch (window.location.pathname.toLowerCase()) {
             }
         });
 
+        console.log('transaction id: ' + transaction_id);
+
         if (transaction_id != null) {
             // tax, shipping, total
             var revenue = parseFloat($('.CartFinalTotal strong').text().replace('CDN', '').replace('$','').trim()).toFixed(2);
 
+            console.log('revenue: ' + revenue);
             // find shipping and tax (both held under a div.CartTax)
             var shipping = 0;
             var tax = 0;
@@ -319,8 +323,13 @@ switch (window.location.pathname.toLowerCase()) {
                 }
             });
 
+            console.log('shipping: ' + shipping);
+            console.log('tax: ' + tax);
+
             var purchased_products = [];
             $.each($('#ShoppingCart table tbody tr'), function(i, product) {
+                console.log('looking at item:');
+                console.table(product);
                 var item_name = $(product).find('.CartItem p strong').text().trim();
                 var item_variant = $(product).find('.CartType').text().trim();
                 var item_quantity = parseInt($(product).find('.CartQuantity').text().trim());
@@ -337,14 +346,20 @@ switch (window.location.pathname.toLowerCase()) {
                     purchased_product.variant = item_variant;
                 }
 
+                console.log('adding product: ');
+                console.table(purchased_product);
                 purchased_products.push(purchased_product);
             });
+
+            console.log('products to add:');
+            console.table(purchased_products);
 
             // DON'T forget member coupon by looking for that option under login area
             // ALSO: adjust by 1.8% the total value of combined items, not including tax and such
             // if peeps want that and set that as revenue
 
             if (purchased_products.length > 0) {
+                console.log('supposedly sending tag');
                 dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event' : 'purchase',
