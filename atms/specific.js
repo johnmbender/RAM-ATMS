@@ -42,6 +42,31 @@ switch (window.location.pathname.toLowerCase()) {
                 impression.category = category;
             }
             impressions.push(impression);
+
+            // add the Purchase click
+            $(item).find('.PrimaryAction').on('click', function(event) {
+                event.preventDefault();
+
+                if (category == null) {
+                    category = 'All items';
+                }
+
+                dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event' : 'productClick',
+                    'ecommerce': {
+                        'click': {
+                            'actionField': {
+                                'list': category
+                            },
+                            'products': [ impression ]
+                        }
+                    },
+                    'eventCallback' : function() {
+                        $(this).unbind('click').click();
+                    }
+                });
+            });
         });
 
         if (impressions.length > 0) {
