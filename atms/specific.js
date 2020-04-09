@@ -47,7 +47,7 @@ switch (window.location.pathname.toLowerCase()) {
         if (impressions.length > 0) {
             dataLayer = window.dataLayer || [];
             dataLayer.push({
-                'event' : 'ecommerce',
+                'event' : 'impressions',
                 'ecommerce' : {
                     'currencyCode' : 'CAD',
                     'impressions' : impressions
