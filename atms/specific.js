@@ -65,7 +65,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback' : function() {
-                        window.location = destination;
+                        window.location.href = destination;
                     }
                 });
             });
