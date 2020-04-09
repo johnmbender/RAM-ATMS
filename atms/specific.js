@@ -47,6 +47,8 @@ switch (window.location.pathname.toLowerCase()) {
             $(item).find('.PrimaryAction').on('click', function(event) {
                 event.preventDefault();
 
+                var purchaseButton = $(this);
+
                 if (category == null) {
                     category = 'All items';
                 }
@@ -63,7 +65,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback' : function() {
-                        $(this).unbind('click').click();
+                        $(purchaseButton).unbind('click').click();
                     }
                 });
             });
