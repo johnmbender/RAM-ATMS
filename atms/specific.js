@@ -293,7 +293,7 @@ switch (window.location.pathname.toLowerCase()) {
         var transaction_id = null;
         var alert = $('.Alert');
         // loop the p tags, to make sure we get the right thing
-        $.each($(alert).find('p strong'), function(i, p) {
+        $.each($('.Alert').find('p strong'), function(i, p) {
             var statement = $(p).text().trim();
             if (statement.indexOf('Your confirmation number is ') != -1) {
                 statement = statement.replace('Your confirmation number is ', '');
