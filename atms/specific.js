@@ -47,7 +47,7 @@ switch (window.location.pathname.toLowerCase()) {
             $(item).find('.PrimaryAction').on('click', function(event) {
                 event.preventDefault();
 
-                var purchaseButton = $(this);
+                var destination = $(this).prop('href');
 
                 if (category == null) {
                     category = 'All items';
@@ -65,7 +65,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback' : function() {
-                        $(purchaseButton).unbind('click').click();
+                        window.location = destination;
                     }
                 });
             });
