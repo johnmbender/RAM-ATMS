@@ -221,29 +221,28 @@ switch (window.location.pathname.toLowerCase()) {
             });
         });
 
-        // not sure we care about shipping costs?
-        var shipping_cost = parseFloat($('#ShippingOptions .Price').text().trim().replace('$','')).toFixed(2);
+        // // not sure we care about shipping costs?
+        // var shipping_cost = parseFloat($('#ShippingOptions .Price').text().trim().replace('$','')).toFixed(2);
 
-        // could also get GST, but guessing that's not important
+        // // could also get GST, but guessing that's not important
 
-        if (cartItems.length > 0) {
-            dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'checkout',
-                'ecommerce': {
-                    'currencyCode': 'CAD',
-                    'checkout': {
-                        'actionField': {
-                            'step': 1,
-                            'option': 'Order Summary'
-                        },
-                        'products': cartItems
-                    }
-                }
-            });
-        }
+        // if (cartItems.length > 0) {
+        //     dataLayer = window.dataLayer || [];
+        //     dataLayer.push({
+        //         'event': 'checkout',
+        //         'ecommerce': {
+        //             'currencyCode': 'CAD',
+        //             'checkout': {
+        //                 'actionField': {
+        //                     'step': 1,
+        //                     'option': 'Order Summary'
+        //                 },
+        //                 'products': cartItems
+        //             }
+        //         }
+        //     });
+        // }
         break;
-
     case '/ram/ordercheckout.aspx':
         // user is logged in, has a full cart
         var cartItems = [];
@@ -280,7 +279,7 @@ switch (window.location.pathname.toLowerCase()) {
                     'currencyCode': 'CAD',
                     'checkout': {
                         'actionField': {
-                            'step': 2,
+                            'step': 1,
                             'option': 'Order Checkout'
                         },
                         'products': cartItems
