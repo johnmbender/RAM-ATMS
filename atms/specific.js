@@ -288,7 +288,7 @@ switch (window.location.pathname.toLowerCase()) {
             });
         }
         break;
-    case '/ram/OrderResponse.aspx':
+    case '/ram/orderresponse.aspx':
         console.log('in order response');
         // we need to get transaction_id
         var transaction_id = null;
