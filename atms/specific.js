@@ -291,7 +291,6 @@ switch (window.location.pathname.toLowerCase()) {
     case '/ram/OrderResponse.aspx':
         // we need to get transaction_id
         var transaction_id = null;
-        var alert = $('.Alert');
         // loop the p tags, to make sure we get the right thing
         $.each($('.Alert').find('p strong'), function(i, p) {
             var statement = $(p).text().trim();
