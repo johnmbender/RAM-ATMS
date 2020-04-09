@@ -7,9 +7,6 @@ if ($('#MemberPricing').length > 0) {
     member = true;
 }
 
-// window.dataLayer = window.dataLayer || [];
-// and possibly 'event' : 'purchase / ecommerce / ?'
-
 switch (window.location.pathname.toLowerCase()) {
     case '/ram':
     case '/ram/':
@@ -48,8 +45,9 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         if (impressions.length > 0) {
+            dataLayer = window.dataLayer || [];
             dataLayer.push({
-                'event' : 'impressions',
+                'event' : 'ecommerce',
                 'ecommerce' : {
                     'currencyCode' : 'CAD',
                     'impressions' : impressions
@@ -87,6 +85,7 @@ switch (window.location.pathname.toLowerCase()) {
         }
 
         if (products.length > 0) {
+            dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event' : 'detail',
                 'ecommerce': {
@@ -133,6 +132,7 @@ switch (window.location.pathname.toLowerCase()) {
             }
 
             if (added_products.length > 0) {
+                dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'addToCart',
                     'ecommerce': {
@@ -178,6 +178,7 @@ switch (window.location.pathname.toLowerCase()) {
                 event.preventDefault();
                 var thisRemoveButton = $(this);
 
+                dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event' : 'removeFromCart',
                     'ecommerce' : {
@@ -199,6 +200,7 @@ switch (window.location.pathname.toLowerCase()) {
         // could also get GST, but guessing that's not important
 
         if (cartItems.length > 0) {
+            dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'checkout',
                 'ecommerce': {
@@ -244,6 +246,7 @@ switch (window.location.pathname.toLowerCase()) {
         var cart_gst = parseFloat($('.CartTax').eq(1).text().replace('GST Included: ','').replace('$','').trim()).toFixed(2);
 
         if (cartItems.length > 0) {
+            dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'checkout',
                 'ecommerce': {
@@ -317,6 +320,7 @@ switch (window.location.pathname.toLowerCase()) {
             // if peeps want that and set that as revenue
 
             if (purchased_products.length > 0) {
+                dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event' : 'purchase',
                     'ecommerce': {
