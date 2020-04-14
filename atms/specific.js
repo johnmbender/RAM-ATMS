@@ -106,7 +106,7 @@ switch (window.location.pathname.toLowerCase()) {
         break;
     case '/ram/selection.aspx':
         // add modal manually until Brandon gets it up there
-        if (($'#modalPhotoViewer').length < 0) {
+        if ($('#modalPhotoViewer').length < 0) {
             $('body').append('<div class="modal fade" id="modalPhotoViewer" tabindex="-1" role="dialog" aria-labelledby="photoViewer" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-body"><img id="modalPhotoIMG" class="img-fluid" src=""></div><div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></div></div></div></div>');
         }
 
