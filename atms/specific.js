@@ -7,20 +7,6 @@ if ($('#MemberPricing').length > 0) {
     member = true;
 }
 
-
-
-$.each($('.GalleryItems li'), function(i, li) {
-    var img = $(li).find('img');
-    var imgURL = $(li).find('a').prop('href');
-    $(li).find('a').remove();
-    $(img).on('click', function() {
-        $('#modalPhotoIMG').prop('src', imgURL);
-        $('#modalPhotoViewer').modal('show');
-    });
-    $(img).css('cursor','zoom-in');
-    $(li).append(img);
-});
-
 switch (window.location.pathname.toLowerCase()) {
     case '/ram':
     case '/ram/':
@@ -109,6 +95,18 @@ switch (window.location.pathname.toLowerCase()) {
         if ($('#modalPhotoViewer').length < 0) {
             $('body').append('<div class="modal fade" id="modalPhotoViewer" tabindex="-1" role="dialog" aria-labelledby="photoViewer" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-body"><img id="modalPhotoIMG" class="img-fluid" src=""></div><div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></div></div></div></div>');
         }
+
+        $.each($('.GalleryItems li'), function(i, li) {
+            var img = $(li).find('img');
+            var imgURL = $(li).find('a').prop('href');
+            $(li).find('a').remove();
+            $(img).on('click', function() {
+                $('#modalPhotoIMG').prop('src', imgURL);
+                $('#modalPhotoViewer').modal('show');
+            });
+            $(img).css('cursor','zoom-in');
+            $(li).append(img);
+        });
 
         // viewing an item
         var item_name = $('.EventInfo .EventInfoRight h2').text().trim();
