@@ -7,10 +7,29 @@ if ($('#MemberPricing').length > 0) {
     member = true;
 }
 
+$.each($('.GalleryItems li'), function(i, li) {
+    var img = $(li).find('img');
+    var imgURL = $(li).find('a').prop('href');
+    $(li).find('a').remove();
+    $(img).on('click', function() {
+        $('#modalPhotoIMG').prop('src', imgURL);
+        $('#modalPhotoViewer').modal('show');
+    });
+    $(img).css('cursor','zoom-in');
+    $(li).append(img);
+});
+
 switch (window.location.pathname.toLowerCase()) {
     case '/ram':
     case '/ram/':
     case '/ram/default.aspx':
+        // rename 'PURCHASE' button to 'VIEW'
+        $.each($('.PrimaryAction'), function(i, button) {
+            if ($(button).text().trim().toLowerCase() == 'purchase') {
+                $(button).text('VIEW');
+            }
+        });
+
         // item listings; if a tagId param exists, viewing a category
         var category = null;
         if (vars.tagid != null) {

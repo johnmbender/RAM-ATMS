@@ -264,3 +264,7 @@ input[name="ordEmailAddress"] {
 #DateFilter.filter {
 	display: none;
 }
+
+.GalleryItems img {
+	cursor: zoom-in;
+}
