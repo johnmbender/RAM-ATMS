@@ -25,7 +25,8 @@ switch (window.location.pathname.toLowerCase()) {
                     // add image
                     var urlVars = getUrlVars($(el).find('.ButtonArea .PrimaryAction').prop('href'));
                     var photo_itemId = urlVars.item;
-                    $(el).prepend('<img src="/ram/image.axd?itemmedia=' + photo_itemId + '" class="img-fluid">');
+                    var imgUrl = '/ram/image.axd?item=' + photo_itemId;
+                    $(el).prepend('<img src="' + imgUrl + '" class="img-fluid" style="margin-bottom: 10px;">');
                 }
             });
         }
@@ -103,14 +104,9 @@ switch (window.location.pathname.toLowerCase()) {
 
         break;
     case '/ram/selection.aspx':
-        // add modal manually until Brandon gets it up there
-        // if ($('#modalPhotoViewer').length == 0) {
-        //     $('body').append('<div class="modal fade" id="modalPhotoViewer" tabindex="-1" role="dialog" aria-labelledby="photoViewer" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-body"><img id="modalPhotoIMG" class="img-fluid" src=""></div><div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Close</button></div></div></div></div>');
-        // }
-
         if (window.location.hostname == 'atmsuat.alberta.ca') {
             if ($('.EventInfo .EventInfoLeft .Image img').length == 0) {
-                $('.EventInfo').prepend('<img src="/ram/image.axd?itemmedia=' + vars.item + '" class="img-fluid">');
+                $('.EventInfo').prepend('<img src="/ram/image.axd?item=' + vars.item + '" class="img-fluid" style="margin-bottom: 10px;">');
             }
         }
 
