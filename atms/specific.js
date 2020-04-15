@@ -66,37 +66,34 @@ switch (window.location.pathname.toLowerCase()) {
             // add the View click
             $(item).find('.PrimaryAction').on('click', function(event) {
                 event.preventDefault();
-
-                if (window.location.hostname == 'atmsuat.alberta.ca') {
-                    alert('clicked!');
-                }
                 var destination = $(this).prop('href');
-                if (window.location.hostname == 'atmsuat.alberta.ca') {
-                    alert(destination);
-                }
 
                 if (category == null) {
                     category = 'All items';
                 }
 
-                dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event' : 'productClick',
-                    'ecommerce': {
-                        'click': {
-                            'actionField': {
-                                'list': category
-                            },
-                            'products': [ impression ]
+                try {
+                    dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event' : 'productClick',
+                        'ecommerce': {
+                            'click': {
+                                'actionField': {
+                                    'list': category
+                                },
+                                'products': [ impression ]
+                            }
+                        },
+                        'eventCallback' : function() {
+                            window.location.href = destination;
                         }
-                    },
-                    'eventCallback' : function() {
-                        if (window.location.hostname == 'atmsuat.alberta.ca') {
-                            confirm('seriously?');
-                        }
-                        window.location.href = destination;
+                    });
+                } catch (error) {
+                    if (window.location.hostname == 'atmsuat.alberta.ca') {
+                        confirm('error!');
+                        confirm(error);
                     }
-                });
+                }
             });
         });
 
