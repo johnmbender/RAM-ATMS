@@ -19,17 +19,31 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         // show an image for mobile devices, if missing
+        console.log('trying...');
+        console.log('on server ' + window.location.hostname);
         if (window.location.hostname == 'atmsuat.alberta.ca') {
+            console.log('correct...');
             $.each($('.EventListing'), function(i, el) {
+                console.log('looking at ');
+                console.log($(el));
                 if ($(el).find('.Image img').length == 0) {
+                    console.log('no image found...');
                     // add image
                     var urlVars = getUrlVars($(el).find('.ButtonArea .PrimaryAction').prop('href'));
+                    console.table(urlVars);
                     var photo_itemId = urlVars.item;
+                    console.log('photo id: ' + photo_itemId);
                     var imgUrl = '/ram/image.axd?item=' + photo_itemId;
+                    console.log('url to image: ' + imgUrl);
                     $(el).prepend('<img src="' + imgUrl + '" class="img-fluid" style="margin-bottom: 10px;">');
+                    console.log('photo added(?)');
+                } else {
+                    console.log('found an image?');
+                    console.log($(el).find('.Image img'));
                 }
             });
         }
+        console.log('done with test');
 
         // item listings; if a tagId param exists, viewing a category
         var category = null;
