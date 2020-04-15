@@ -19,31 +19,17 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         // show an image for mobile devices, if missing
-        console.log('trying...');
-        console.log('on server ' + window.location.hostname);
         if (window.location.hostname == 'atmsuat.alberta.ca') {
-            console.log('correct...');
             $.each($('.EventListing'), function(i, el) {
-                console.log('looking at ');
-                console.log($(el));
-                if ($(el).find('.Image').find('img').length == 0) {
-                    console.log('no image found...');
+                if ($(el).find('.Image img').is(':visible') == false) {
                     // add image
                     var urlVars = getUrlVars($(el).find('.ButtonArea .PrimaryAction').prop('href'));
-                    console.table(urlVars);
                     var photo_itemId = urlVars.item;
-                    console.log('photo id: ' + photo_itemId);
                     var imgUrl = '/ram/image.axd?item=' + photo_itemId;
-                    console.log('url to image: ' + imgUrl);
                     $(el).prepend('<img src="' + imgUrl + '" class="img-fluid" style="margin-bottom: 10px;">');
-                    console.log('photo added(?)');
-                } else {
-                    console.log('found an image?');
-                    console.log($(el).find('.Image').find('img'));
                 }
             });
         }
-        console.log('done with test');
 
         // item listings; if a tagId param exists, viewing a category
         var category = null;
@@ -119,7 +105,7 @@ switch (window.location.pathname.toLowerCase()) {
         break;
     case '/ram/selection.aspx':
         if (window.location.hostname == 'atmsuat.alberta.ca') {
-            if ($('.EventInfo .EventInfoLeft .Image img').length == 0) {
+            if ($('.EventInfo .EventInfoLeft .Image img').is(':visible') == false) {
                 $('.EventInfo').prepend('<img src="/ram/image.axd?item=' + vars.item + '" class="img-fluid" style="margin-bottom: 10px;">');
             }
         }
@@ -272,28 +258,6 @@ switch (window.location.pathname.toLowerCase()) {
                 });
             });
         });
-
-        // // not sure we care about shipping costs?
-        // var shipping_cost = parseFloat($('#ShippingOptions .Price').text().trim().replace('$','')).toFixed(2);
-
-        // // could also get GST, but guessing that's not important
-
-        // if (cartItems.length > 0) {
-        //     dataLayer = window.dataLayer || [];
-        //     dataLayer.push({
-        //         'event': 'checkout',
-        //         'ecommerce': {
-        //             'currencyCode': 'CAD',
-        //             'checkout': {
-        //                 'actionField': {
-        //                     'step': 1,
-        //                     'option': 'Order Summary'
-        //                 },
-        //                 'products': cartItems
-        //             }
-        //         }
-        //     });
-        // }
         break;
     case '/ram/ordercheckout.aspx':
         // user is logged in, has a full cart
