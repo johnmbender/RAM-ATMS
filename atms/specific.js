@@ -208,11 +208,11 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback': function() {
-                        $(thisAddButton).click();
+                        $(thisAddButton).unbind('click').click();
                     }
                 });
             } else {
-                $(thisAddButton).click();
+                $(thisAddButton).unbind('click').click();
             }
         });
         break;
@@ -254,7 +254,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback': function() {
-                        $(thisRemoveButton).click();
+                        $(thisRemoveButton).unbind('click').click();
                     }
                 });
             });
