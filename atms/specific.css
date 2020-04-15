@@ -262,7 +262,7 @@ input[name="ordEmailAddress"] {
 }
 
 #DateFilter.filter, #dateFilter {
-	display: none;
+	display: none !important;
 }
 
 .GalleryItems img {
