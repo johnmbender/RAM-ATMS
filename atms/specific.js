@@ -67,7 +67,13 @@ switch (window.location.pathname.toLowerCase()) {
             $(item).find('.PrimaryAction').on('click', function(event) {
                 event.preventDefault();
 
+                if (window.location.hostname == 'atmsuat.alberta.ca') {
+                    alert('clicked!');
+                }
                 var destination = $(this).prop('href');
+                if (window.location.hostname == 'atmsuat.alberta.ca') {
+                    alert(destination);
+                }
 
                 if (category == null) {
                     category = 'All items';
@@ -85,6 +91,9 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback' : function() {
+                        if (window.location.hostname == 'atmsuat.alberta.ca') {
+                            confirm('seriously?');
+                        }
                         window.location.href = destination;
                     }
                 });
