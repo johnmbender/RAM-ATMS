@@ -154,6 +154,9 @@ button#plan-your-visit:hover {
 		background-size: 100% auto;
 		height: 15vw;
 	}
+	main {
+		margin-top: 15vw !important;
+	}
 	#RAM-logo {
 		height: 10vw;
 		margin: 2.5vw 0;
