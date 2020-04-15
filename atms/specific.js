@@ -72,28 +72,21 @@ switch (window.location.pathname.toLowerCase()) {
                     category = 'All items';
                 }
 
-                try {
-                    dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event' : 'productClick',
-                        'ecommerce': {
-                            'click': {
-                                'actionField': {
-                                    'list': category
-                                },
-                                'products': [ impression ]
-                            }
-                        },
-                        'eventCallback' : function() {
-                            window.location.href = destination;
+                dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event' : 'productClick',
+                    'ecommerce': {
+                        'click': {
+                            'actionField': {
+                                'list': category
+                            },
+                            'products': [ impression ]
                         }
-                    });
-                } catch (error) {
-                    if (window.location.hostname == 'atmsuat.alberta.ca') {
-                        confirm('error!');
-                        confirm(error);
+                    },
+                    'eventCallback' : function() {
+                        window.location.href = destination;
                     }
-                }
+                });
             });
         });
 
