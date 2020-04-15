@@ -85,7 +85,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback' : function() {
-                        window.location.href = window.location.hostname + destination;
+                        window.location.href = destination;
                     }
                 });
             });
