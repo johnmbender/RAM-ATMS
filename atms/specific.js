@@ -26,7 +26,7 @@ switch (window.location.pathname.toLowerCase()) {
             $.each($('.EventListing'), function(i, el) {
                 console.log('looking at ');
                 console.log($(el));
-                if ($(el).find('.Image img').length == 0) {
+                if ($(el).find('.Image').find('img').length == 0) {
                     console.log('no image found...');
                     // add image
                     var urlVars = getUrlVars($(el).find('.ButtonArea .PrimaryAction').prop('href'));
@@ -39,7 +39,7 @@ switch (window.location.pathname.toLowerCase()) {
                     console.log('photo added(?)');
                 } else {
                     console.log('found an image?');
-                    console.log($(el).find('.Image img'));
+                    console.log($(el).find('.Image').find('img'));
                 }
             });
         }
