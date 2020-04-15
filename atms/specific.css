@@ -261,7 +261,7 @@ input[name="ordEmailAddress"] {
 	max-height: 100%;
 }
 
-#DateFilter.filter {
+#DateFilter.filter, #dateFilter {
 	display: none;
 }
 
