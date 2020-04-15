@@ -165,7 +165,6 @@ switch (window.location.pathname.toLowerCase()) {
         var add_button = $('.ButtonArea #AddToOrder').on('click', function(event) {
             event.preventDefault();
 
-            var form = $(this).closest('form');
             var thisAddButton = $(this);
             var added_products = [];
 
@@ -209,11 +208,11 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback': function() {
-                        $(form).submit();
+                        $(thisAddButton).click();
                     }
                 });
             } else {
-                $(form).submit();
+                $(thisAddButton).click();
             }
         });
         break;
@@ -243,7 +242,6 @@ switch (window.location.pathname.toLowerCase()) {
             // add remove click tracking
             $(itemRow).find('input[title="Remove"]').on('click', function(event) {
                 event.preventDefault();
-                var form = $(this).closest('form');
                 var thisRemoveButton = $(this);
 
                 dataLayer = window.dataLayer || [];
@@ -256,7 +254,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback': function() {
-                        $(form).submit();
+                        $(thisRemoveButton).click();
                     }
                 });
             });
