@@ -63,7 +63,7 @@ switch (window.location.pathname.toLowerCase()) {
             }
             impressions.push(impression);
 
-            // add the Purchase click
+            // add the View click
             $(item).find('.PrimaryAction').on('click', function(event) {
                 event.preventDefault();
 
