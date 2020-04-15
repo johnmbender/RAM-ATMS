@@ -73,29 +73,21 @@ switch (window.location.pathname.toLowerCase()) {
                     category = 'All items';
                 }
 
-                try {
-                    dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event' : 'productClick',
-                        'ecommerce': {
-                            'click': {
-                                'actionField': {
-                                    'list': category
-                                },
-                                'products': [ impression ]
-                            }
-                        },
-                        'eventCallback' : function() {
-                            
-                            window.location.assign(destination);
+                dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event' : 'productClick',
+                    'ecommerce': {
+                        'click': {
+                            'actionField': {
+                                'list': category
+                            },
+                            'products': [ impression ]
                         }
-                    });
-                } catch (e) {
-                    if (window.location.hostname == 'atmsuat.alberta.ca') {
-                        confirm('something went wrong\ndestination: ' + destination);
+                    },
+                    'eventCallback' : function() {
+                        window.location.href = window.location.hostname + destination;
                     }
-                    window.location.assign(destination);
-                }
+                });
             });
         });
 
@@ -172,6 +164,8 @@ switch (window.location.pathname.toLowerCase()) {
 
         var add_button = $('.ButtonArea #AddToOrder').on('click', function(event) {
             event.preventDefault();
+
+            var form = $(this).closest('form');
             var thisAddButton = $(this);
             var added_products = [];
 
@@ -215,11 +209,11 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback': function() {
-                        $(thisAddButton).unbind('click').click();
+                        $(form).submit();
                     }
                 });
             } else {
-                $(thisAddButton).unbind('click').click();
+                $(form).submit();
             }
         });
         break;
@@ -249,6 +243,7 @@ switch (window.location.pathname.toLowerCase()) {
             // add remove click tracking
             $(itemRow).find('input[title="Remove"]').on('click', function(event) {
                 event.preventDefault();
+                var form = $(this).closest('form');
                 var thisRemoveButton = $(this);
 
                 dataLayer = window.dataLayer || [];
@@ -261,7 +256,7 @@ switch (window.location.pathname.toLowerCase()) {
                         }
                     },
                     'eventCallback': function() {
-                        $(thisRemoveButton).unbind('click').click();
+                        $(form).submit();
                     }
                 });
             });
