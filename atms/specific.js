@@ -19,17 +19,15 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         // show an image for mobile devices, if missing
-        if (window.location.hostname == 'atmsuat.alberta.ca') {
-            $.each($('.EventListing'), function(i, el) {
-                if ($(el).find('.Image img').is(':visible') == false) {
-                    // add image
-                    var urlVars = getUrlVars($(el).find('.ButtonArea .PrimaryAction').prop('href'));
-                    var photo_itemId = urlVars.item;
-                    var imgUrl = '/ram/image.axd?item=' + photo_itemId;
-                    $(el).prepend('<img src="' + imgUrl + '" class="img-fluid" style="margin-bottom: 10px;">');
-                }
-            });
-        }
+        $.each($('.EventListing'), function(i, el) {
+            if ($(el).find('.Image img').is(':visible') == false) {
+                // add image
+                var urlVars = getUrlVars($(el).find('.ButtonArea .PrimaryAction').prop('href'));
+                var photo_itemId = urlVars.item;
+                var imgUrl = '/ram/image.axd?item=' + photo_itemId;
+                $(el).prepend('<img src="' + imgUrl + '" class="img-fluid" style="margin-bottom: 10px;">');
+            }
+        });
 
         // item listings; if a tagId param exists, viewing a category
         var category = null;
@@ -103,10 +101,8 @@ switch (window.location.pathname.toLowerCase()) {
 
         break;
     case '/ram/selection.aspx':
-        if (window.location.hostname == 'atmsuat.alberta.ca') {
-            if ($('.EventInfo .EventInfoLeft .Image img').is(':visible') == false) {
-                $('.EventInfo').prepend('<img src="/ram/image.axd?item=' + vars.item + '" class="img-fluid" style="margin-bottom: 10px;">');
-            }
+        if ($('.EventInfo .EventInfoLeft .Image img').is(':visible') == false) {
+            $('.EventInfo').prepend('<img src="/ram/image.axd?item=' + vars.item + '" class="img-fluid" style="margin-bottom: 10px;">');
         }
 
         $.each($('.GalleryItems li'), function(i, li) {
