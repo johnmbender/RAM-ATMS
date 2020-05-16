@@ -2,6 +2,13 @@
 	padding-top: 10px;
 }
 
+/* WHY are you using IE? */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	#atms-container {
+		margin-top: 20px !important;
+	}
+}
+
 h2 {
 	margin-top: 30px;
 }
