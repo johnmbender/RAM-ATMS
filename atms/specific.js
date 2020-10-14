@@ -2,7 +2,7 @@ var vars = getUrlVars();
 var member = null;
 
 // hide public pricing if member is logged in
-if ($('#MemberPricing').length > 0) {
+if ($('#MemberPricing:not(.GreyedOut)').length > 0) {
     $('#PublicPricing').closest('.Section').remove();   
     member = true;
 }
