@@ -35,6 +35,8 @@ switch (window.location.pathname.toLowerCase()) {
             category = $('h1').text().trim();
         }
 
+        /** 
+         * impressions seem to be breaking Safari
         var impressions = [];
 
         // loop through .EventListing for what content is visible
@@ -98,6 +100,7 @@ switch (window.location.pathname.toLowerCase()) {
                 }
             });
         }
+        */
 
         break;
     case '/ram/selection.aspx':
@@ -118,6 +121,7 @@ switch (window.location.pathname.toLowerCase()) {
         });
 
         // viewing an item
+        /* impressions seem to be breaking Safari
         var item_name = $('.EventInfo .EventInfoRight h2').text().trim();
         var item_id = parseInt(vars.item);
 
@@ -210,9 +214,11 @@ switch (window.location.pathname.toLowerCase()) {
                 $(thisAddButton).unbind('click').click();
             }
         });
+        */
         break;
 
     case '/ram/ordersummary.aspx':
+        /* impressions seem to be breaking Safari
         // viewing a cart
         var cartItems = [];
 
@@ -254,8 +260,10 @@ switch (window.location.pathname.toLowerCase()) {
                 });
             });
         });
+        */
         break;
     case '/ram/ordercheckout.aspx':
+        /* impressions seem to be breaking Safari
         // user is logged in, has a full cart
         var cartItems = [];
 
@@ -299,6 +307,7 @@ switch (window.location.pathname.toLowerCase()) {
                 }
             });
         }
+        */
         break;
     case '/ram/orderresponse.aspx':
         // we need to get transaction_id
@@ -313,6 +322,7 @@ switch (window.location.pathname.toLowerCase()) {
             }
         });
 
+        /* impressions seem to be breaking Safari
         if (transaction_id != null) {
             // tax, shipping, total
             var revenue = parseFloat($('.CartFinalTotal strong').text().replace('CDN', '').replace('$','').trim()).toFixed(2);
@@ -376,5 +386,6 @@ switch (window.location.pathname.toLowerCase()) {
                 });
             }
         }
+        */
         break;
 }
